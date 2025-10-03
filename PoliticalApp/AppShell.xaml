@@ -4,11 +4,34 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:PoliticalApp"
-    Title="PoliticalApp">
+    Title="PoliticalApp"
+    FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="Home" Icon="home.png" Route="home">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage" />
+        </Tab>
+        <Tab Title="Representatives" Icon="people.png" Route="representatives">
+            <ShellContent
+                Title="Representatives"
+                ContentTemplate="{DataTemplate ContentPage}"
+                Route="RepresentativesPlaceholder" />
+        </Tab>
+        <Tab Title="Policies" Icon="document.png" Route="policies">
+            <ShellContent
+                Title="Policies"
+                ContentTemplate="{DataTemplate ContentPage}"
+                Route="PoliciesPlaceholder" />
+        </Tab>
+        <Tab Title="Profile" Icon="person.png" Route="profile">
+            <ShellContent
+                Title="Profile"
+                ContentTemplate="{DataTemplate ContentPage}"
+                Route="ProfilePlaceholder" />
+        </Tab>
+    </TabBar>
 
 </Shell>

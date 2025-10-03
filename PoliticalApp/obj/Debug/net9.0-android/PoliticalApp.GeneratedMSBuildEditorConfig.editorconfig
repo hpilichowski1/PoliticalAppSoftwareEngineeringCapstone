@@ -12,38 +12,38 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PoliticalApp
-build_property.ProjectDir = /Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/
+build_property.ProjectDir = C:\Users\jaspe\Downloads\PoliticalAppSoftwareEngineeringCapstone-main\PoliticalAppSoftwareEngineeringCapstone-main\PoliticalApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/App.xaml]
+[C:/Users/jaspe/Downloads/PoliticalAppSoftwareEngineeringCapstone-main/PoliticalAppSoftwareEngineeringCapstone-main/PoliticalApp/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/AppShell.xaml]
+[C:/Users/jaspe/Downloads/PoliticalAppSoftwareEngineeringCapstone-main/PoliticalAppSoftwareEngineeringCapstone-main/PoliticalApp/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/MainPage.xaml]
+[C:/Users/jaspe/Downloads/PoliticalAppSoftwareEngineeringCapstone-main/PoliticalAppSoftwareEngineeringCapstone-main/PoliticalApp/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/Resources/Styles/Colors.xaml]
+[C:/Users/jaspe/Downloads/PoliticalAppSoftwareEngineeringCapstone-main/PoliticalAppSoftwareEngineeringCapstone-main/PoliticalApp/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Resources.Styles.Colors.xaml
-build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
-build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/Resources/Styles/Styles.xaml]
+[C:/Users/jaspe/Downloads/PoliticalAppSoftwareEngineeringCapstone-main/PoliticalAppSoftwareEngineeringCapstone-main/PoliticalApp/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Resources.Styles.Styles.xaml
-build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
-build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
