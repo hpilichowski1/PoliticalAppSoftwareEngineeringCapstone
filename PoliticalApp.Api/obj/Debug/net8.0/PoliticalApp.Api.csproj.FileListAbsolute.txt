@@ -1,0 +1,9 @@
+/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp.Api/obj/Debug/net8.0/PoliticalApp.Api.csproj.AssemblyReference.cache
+/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp.Api/obj/Debug/net8.0/rpswa.dswa.cache.json
+/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp.Api/obj/Debug/net8.0/PoliticalApp.Api.GeneratedMSBuildEditorConfig.editorconfig
+/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp.Api/obj/Debug/net8.0/PoliticalApp.Api.AssemblyInfoInputs.cache
+/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp.Api/obj/Debug/net8.0/PoliticalApp.Api.AssemblyInfo.cs
+/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp.Api/obj/Debug/net8.0/PoliticalApp.Api.csproj.CoreCompileInputs.cache
+/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp.Api/obj/Debug/net8.0/PoliticalApp.Api.MvcApplicationPartsAssemblyInfo.cs
+/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp.Api/obj/Debug/net8.0/PoliticalApp.Api.MvcApplicationPartsAssemblyInfo.cache
+/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp.Api/obj/Debug/net8.0/PoliticalApp.Api.sourcelink.json
