@@ -1,4 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
+using PoliticalApp.Services;
+using PoliticalApp.ViewModels;
+using PoliticalApp.Views;
 
 namespace PoliticalApp;
 
@@ -9,11 +13,23 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+
+		// Register Services
+		builder.Services.AddSingleton<IRepresentativeService, MockRepresentativeService>();
+		builder.Services.AddSingleton<IPolicyService, MockPolicyService>();
+
+		// Register ViewModels
+		builder.Services.AddTransient<HomeViewModel>();
+
+		// Register Pages
+		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<HomePage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();
