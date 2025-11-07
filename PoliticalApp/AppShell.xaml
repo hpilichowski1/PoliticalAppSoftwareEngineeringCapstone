@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:PoliticalApp"
+    xmlns:views="clr-namespace:PoliticalApp.Views"
     Title="PoliticalApp"
     FlyoutBehavior="Disabled">
 
@@ -17,14 +18,14 @@
         <Tab Title="Representatives" Icon="people.png" Route="representatives">
             <ShellContent
                 Title="Representatives"
-                ContentTemplate="{DataTemplate ContentPage}"
-                Route="RepresentativesPlaceholder" />
+                ContentTemplate="{DataTemplate views:RepresentativesPage}"
+                Route="RepresentativesPage" />
         </Tab>
         <Tab Title="Policies" Icon="document.png" Route="policies">
             <ShellContent
                 Title="Policies"
-                ContentTemplate="{DataTemplate ContentPage}"
-                Route="PoliciesPlaceholder" />
+                ContentTemplate="{DataTemplate views:PoliciesPage}"
+                Route="PoliciesPage" />
         </Tab>
         <Tab Title="Profile" Icon="person.png" Route="profile">
             <ShellContent

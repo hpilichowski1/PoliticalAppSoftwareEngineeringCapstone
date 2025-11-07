@@ -26,10 +26,14 @@ public static class MauiProgram
 
 		// Register ViewModels
 		builder.Services.AddTransient<HomeViewModel>();
+		builder.Services.AddTransient<RepresentativesViewModel>();
+		builder.Services.AddTransient<PoliciesViewModel>();
 
 		// Register Pages
 		builder.Services.AddTransient<MainPage>();
 		builder.Services.AddTransient<HomePage>();
+		builder.Services.AddTransient<RepresentativesPage>();
+		builder.Services.AddTransient<PoliciesPage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();
