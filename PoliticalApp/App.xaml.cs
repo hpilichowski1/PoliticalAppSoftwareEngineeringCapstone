@@ -9,6 +9,10 @@ public partial class App : Application
 
 	protected override Window CreateWindow(IActivationState? activationState)
 	{
-		return new Window(new AppShell());
+        var window = new Window(new AppShell())
+        {
+            Page = new AuthPage()
+        };
+        return window;
 	}
 }

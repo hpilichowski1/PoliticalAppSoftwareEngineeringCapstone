@@ -113,15 +113,5 @@
     "/Users/hubertpilichowski/.nuget/packages/xamarin.kotlinx.serialization.core/1.7.3.4/xamarin.kotlinx.serialization.core.1.7.3.4.nupkg.sha512",
     "/Users/hubertpilichowski/.nuget/packages/xamarin.kotlinx.serialization.core.jvm/1.7.3.4/xamarin.kotlinx.serialization.core.jvm.1.7.3.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "message": "Problem reading the cache file /Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/obj/project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
-      "projectPath": "/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/PoliticalApp.csproj",
-      "warningLevel": 1,
-      "filePath": "/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/PoliticalApp.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

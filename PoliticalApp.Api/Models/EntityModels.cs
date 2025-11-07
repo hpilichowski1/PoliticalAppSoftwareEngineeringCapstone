@@ -93,15 +93,6 @@ namespace PoliticalApp.Api.Models.EntityModels
         public ICollection<QuizQuestion> QuizQuestions { get; set; } = [];
     }
 
-    public class QuizQuestion
-    {
-        public string QuizId { get; set; } = "";
-        public Quiz Quiz { get; set; } = null!;
-        public string QuestionId { get; set; } = "";
-        public Question Question { get; set; } = null!;
-        public int Position { get; set; }
-    }
-
     public class QuestionOption
     {
         public string OptionId { get; set; } = Guid.NewGuid().ToString();
