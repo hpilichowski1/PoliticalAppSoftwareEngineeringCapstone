@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage
-    x:Class="PoliticalApp.Pages.AuthPage"
+    x:Class="PoliticalApp.AuthPage"
+    x:Name="root"
+    x:DataType="viewmodels:AuthViewModel"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:PoliticalApp.Pages"
+    xmlns:views="clr-namespace:PoliticalApp"
+    xmlns:viewmodels="clr-namespace:PoliticalApp.ViewModels"
     Title="Welcome"
     BarBackgroundColor="{DynamicResource PrimaryColor}"
     BarTextColor="{DynamicResource OnPrimaryColor}"
     Shell.NavBarIsVisible="False">
 
     <!-- LOGIN TAB -->
-    <ContentPage Title="Login">
+    <ContentPage Title="Login"
+        x:DataType="viewmodels:AuthViewModel"
+        BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}">
         <Grid Padding="24" RowDefinitions="Auto,*" BackgroundColor="{AppThemeBinding Light=#F6F6F6, Dark=#121212}">
             <!-- Header -->
             <VerticalStackLayout Spacing="4">
@@ -99,7 +104,9 @@
     </ContentPage>
 
     <!-- REGISTER TAB -->
-    <ContentPage Title="Register">
+    <ContentPage Title="Register"
+        x:DataType="viewmodels:AuthViewModel"
+        BindingContext="{Binding Source={x:Reference root}, Path=BindingContext}">
         <ScrollView>
             <Grid Padding="24" RowDefinitions="Auto,Auto,*" BackgroundColor="{AppThemeBinding Light=#F6F6F6, Dark=#121212}">
                 <!-- Header -->
@@ -182,6 +189,10 @@
                                 IsEnabled="{Binding CanRegister}"
                                 CornerRadius="12"
                                 HeightRequest="48" />
+                        <Button
+                            Text="Click Me"
+                            Command="{Binding ClickMeCommand}"
+                            TextColor="Blue" />
 
                         <!-- Already have account -->
                         <HorizontalStackLayout HorizontalOptions="Center">

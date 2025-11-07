@@ -1,8 +1,13 @@
+-- Active: 1762465600144@@127.0.0.1@3307@PoliticalApp
 -- Create database
 CREATE DATABASE IF NOT EXISTS PoliticalApp
   DEFAULT CHARACTER SET utf8mb4
   DEFAULT COLLATE utf8mb4_0900_ai_ci;
 USE PoliticalApp;
+
+CREATE USER 'politicalapp'@'%' IDENTIFIED BY 'PoliticalApp';
+GRANT ALL PRIVILEGES ON politicalapp.* TO 'politicalapp'@'%';
+FLUSH PRIVILEGES;
 
 -- ---------- Core ----------
 CREATE TABLE users (

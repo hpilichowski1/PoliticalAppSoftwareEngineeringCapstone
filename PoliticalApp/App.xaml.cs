@@ -1,18 +1,32 @@
-﻿namespace PoliticalApp;
+﻿using PoliticalApp.ViewModels;
+
+namespace PoliticalApp;
 
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
-	}
-
 	protected override Window CreateWindow(IActivationState? activationState)
-	{
-        var window = new Window(new AppShell())
+    {
+        var http = new HttpClient
         {
-            Page = new AuthPage()
+            BaseAddress = new Uri("http://localhost:5154/") // adjust to your API
+        };
+
+        var authViewModel = new AuthViewModel(
+            () => { Shell.Current.GoToAsync("//Register"); },
+            () => { Shell.Current.GoToAsync("//Login"); }, 
+            () => { Shell.Current.GoToAsync("//Main"); },  
+            (title, message, ok) => Application.Current!.Windows[0].Page!.DisplayAlert(title, message, ok),
+            http
+        );
+
+        var appShell = new AppShell();
+        var authPage = new AuthPage(authViewModel); // your ctor that requires VM
+
+        var window = new Window(appShell)
+        {
+            Page = authPage
         };
         return window;
-	}
+    }
+
 }

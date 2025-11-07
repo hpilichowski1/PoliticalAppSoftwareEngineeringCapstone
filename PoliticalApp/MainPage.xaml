@@ -1,84 +1,162 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PoliticalApp.ViewModels"
+             xmlns:models="clr-namespace:PoliticalApp.Models"
              x:Class="PoliticalApp.MainPage"
-             Title="Your Civic Hub">
+             x:DataType="viewModels:HomeViewModel"
+             Title="Your Civic Hub"
+             BackgroundColor="{StaticResource BackgroundColor}">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="18" BackgroundColor="#F7FAFC">
-            <!-- Header -->
-            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" ColumnSpacing="12">
-                <Frame Grid.RowSpan="2" Padding="12" CornerRadius="12" BackgroundColor="#E6EEF8">
-                    <Label Text="🏛️" FontSize="28" />
-                </Frame>
-                <Label Grid.Column="1" Text="Your Civic Hub" FontSize="28" FontAttributes="Bold" TextColor="#0B3D91" />
-                <Label Grid.Column="1" Grid.Row="1" Text="Stay informed and engaged" FontSize="14" TextColor="#4B5563" />
-            </Grid>
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="24,16"
+                                 Spacing="24">
+                <!-- Header Section -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Your Civic Hub"
+                           Style="{StaticResource TitleLabelStyle}" />
+                    <Label Text="Stay informed and engaged"
+                           Style="{StaticResource CaptionLabelStyle}" />
+                </VerticalStackLayout>
 
-            <!-- Activity / Stats -->
-            <Label Text="Your Activity" FontSize="22" FontAttributes="Bold" Margin="0,12,0,4" />
-            <CollectionView ItemsLayout="HorizontalList" HeightRequest="132" SelectionMode="None">
-                <CollectionView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Bills Voted: 12</x:String>
-                        <x:String>Reps Followed: 5</x:String>
-                        <x:String>Score: 78%</x:String>
-                    </x:Array>
-                </CollectionView.ItemsSource>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame CornerRadius="14" Padding="14" Margin="6,4" HasShadow="True" BackgroundColor="#FFFFFF" BorderColor="#D1D5DB">
-                            <VerticalStackLayout>
-                                <Label Text="📊" FontSize="22" HorizontalOptions="Center" />
-                                <Label Text="{Binding .}" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#0B3D91" />
-                                <Label Text="Stat" FontSize="12" TextColor="#4B5563" HorizontalOptions="Center" />
+                <!-- Statistics Section -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Your Activity"
+                           Style="{StaticResource HeadlineLabelStyle}" />
+
+                    <CollectionView ItemsSource="{Binding Stats}"
+                                    SelectionMode="None">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"
+                                               ItemSpacing="12" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:CivicStat">
+                                <Frame Style="{StaticResource CardFrameStyle}"
+                                       WidthRequest="180">
+                                    <VerticalStackLayout Spacing="8"
+                                                         HorizontalOptions="Center">
+                                        <Label Text="{Binding Icon}"
+                                               FontSize="36"
+                                               HorizontalTextAlignment="Center" />
+                                        <Label Text="{Binding Value}"
+                                               Style="{StaticResource HeadlineLabelStyle}"
+                                               HorizontalTextAlignment="Center"
+                                               Margin="0" />
+                                        <Label Text="{Binding Label}"
+                                               Style="{StaticResource CaptionLabelStyle}"
+                                               HorizontalTextAlignment="Center" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+                <!-- Recent Votes Section -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Recent Votes"
+                           Style="{StaticResource HeadlineLabelStyle}" />
+
+                    <CollectionView ItemsSource="{Binding RecentVotes}"
+                                    SelectionMode="None">
+                        <CollectionView.EmptyView>
+                            <VerticalStackLayout Padding="12"
+                                                 Spacing="4">
+                                <Label Text="No recent votes yet."
+                                       Style="{StaticResource BodyLabelStyle}"
+                                       HorizontalTextAlignment="Center" />
+                                <Label Text="Engage with policies to see them here."
+                                       Style="{StaticResource CaptionLabelStyle}"
+                                       HorizontalTextAlignment="Center" />
                             </VerticalStackLayout>
-                        </Frame>                
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                        </CollectionView.EmptyView>
 
-            <!-- Recent Votes -->
-            <Label Text="Recent Votes" FontSize="22" FontAttributes="Bold" Margin="0,12,0,4" />
-            <CollectionView SelectionMode="None">
-                <CollectionView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>HB 1234 • School Safety Act • Yea</x:String>
-                        <x:String>SB 56 • Clean Transit Grant • Nay</x:String>
-                        <x:String>Local 22 • Park Revitalization • Abstain</x:String>
-                    </x:Array>
-                </CollectionView.ItemsSource>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame CornerRadius="12" Padding="14" Margin="6,6" HasShadow="True" BackgroundColor="#FFFFFF" BorderColor="#D1D5DB">
-                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding .}" FontSize="16" TextColor="#111827" />
-                                    <Label Text="Tap to view details" FontSize="12" TextColor="#4B5563" />
-                                </VerticalStackLayout>
-                                <Label Grid.Column="1" Text="Today" TextColor="#4B5563" />
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Button Text="View All Policies" BackgroundColor="#0B3D91" TextColor="White" CornerRadius="10" HeightRequest="48" />
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Policy">
+                                <Frame Style="{StaticResource CardFrameStyle}">
+                                    <Grid ColumnDefinitions="*,Auto"
+                                          ColumnSpacing="12">
+                                        <VerticalStackLayout Grid.Column="0"
+                                                             Spacing="4">
+                                            <Label Text="{Binding BillNumber}"
+                                                   Style="{StaticResource CaptionLabelStyle}"
+                                                   TextColor="{StaticResource PrimaryColor}"
+                                                   FontAttributes="Bold" />
+                                            <Label Text="{Binding Title}"
+                                                   Style="{StaticResource SubheadLabelStyle}"
+                                                   Margin="0" />
+                                            <Label Text="{Binding UserVote}"
+                                                   Style="{StaticResource BodyLabelStyle}"
+                                                   FontAttributes="Bold">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label"
+                                                                 Binding="{Binding UserVote}"
+                                                                 Value="Yea">
+                                                        <Setter Property="TextColor"
+                                                                Value="{StaticResource SuccessColor}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Label"
+                                                                 Binding="{Binding UserVote}"
+                                                                 Value="Nay">
+                                                        <Setter Property="TextColor"
+                                                                Value="{StaticResource ErrorColor}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Label"
+                                                                 Binding="{Binding UserVote}"
+                                                                 Value="Abstain">
+                                                        <Setter Property="TextColor"
+                                                                Value="{StaticResource TextSecondaryColor}" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </VerticalStackLayout>
 
-            <!-- Quick Actions -->
-            <Label Text="Quick Actions" FontSize="22" FontAttributes="Bold" Margin="0,12,0,4" />
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-                <Button Text="Find Representatives" Grid.Column="0" CornerRadius="10" HeightRequest="44" BackgroundColor="#1F2937" TextColor="#FFFFFF" />
-                <Button Text="Take Alignment Quiz" Grid.Column="1" CornerRadius="10" HeightRequest="44" BackgroundColor="#BF0A30" TextColor="#FFFFFF" />
-            </Grid>
+                                        <Label Grid.Column="1"
+                                               Text="{Binding VoteDeadline, StringFormat='Vote by {0:MMM dd, yyyy}'}"
+                                               Style="{StaticResource CaptionLabelStyle}"
+                                               HorizontalTextAlignment="End"
+                                               VerticalOptions="Start"
+                                               Margin="0"
+                                               IsVisible="{Binding VoteDeadline, Converter={StaticResource NullableToBoolConverter}}" />
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
-            <!-- Tips -->
-            <Frame CornerRadius="12" Padding="12" Margin="0,16,0,0" BackgroundColor="#E6EEF8" BorderColor="#D1D5DB">
-                <HorizontalStackLayout Spacing="8">
-                    <Label Text="💡" FontSize="18" />
-                    <Label Text="Tip: Review recent votes to keep your civic score up to date." FontSize="14" TextColor="#1F2937" LineBreakMode="WordWrap" />
-                </HorizontalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+                    <Button Text="View All Policies"
+                            Command="{Binding NavigateToPoliciesCommand}"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </VerticalStackLayout>
+
+                <!-- Quick Actions Section -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Quick Actions"
+                           Style="{StaticResource HeadlineLabelStyle}" />
+
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="12">
+                        <Button Text="Find Representatives"
+                                Command="{Binding NavigateToRepresentativesCommand}"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Grid.Column="0" />
+                        <Button Text="Take Alignment Quiz"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Grid.Column="1"
+                                IsEnabled="False" />
+                    </Grid>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ActivityIndicator IsVisible="{Binding IsLoading}"
+                           IsRunning="{Binding IsLoading}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Color="{StaticResource PrimaryColor}" />
+    </Grid>
 
 </ContentPage>

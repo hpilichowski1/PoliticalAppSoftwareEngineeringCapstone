@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PoliticalApp.Views.RepresentativesPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PoliticalApp.ViewModels"
+             xmlns:models="clr-namespace:PoliticalApp.Models"
+             x:DataType="viewModels:RepresentativesViewModel"
+             BackgroundColor="{StaticResource BackgroundColor}">
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="24,16"
+                                 Spacing="24">
+                <!-- Header Section -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Representative Directory"
+                           Style="{StaticResource TitleLabelStyle}" />
+                    <Label Text="Find your local, state, and district representatives"
+                           Style="{StaticResource CaptionLabelStyle}" />
+                </VerticalStackLayout>
+
+                <!-- Search Bar Section -->
+                <VerticalStackLayout Spacing="12">
+                    <Frame Style="{StaticResource CardFrameStyle}"
+                           Padding="0"
+                           Margin="0">
+                        <SearchBar Placeholder="Search by name, title, or district"
+                                   Text="{Binding SearchText}"
+                                   SearchCommand="{Binding SearchCommand}"
+                                   BackgroundColor="Transparent"
+                                   Margin="8,4" />
+                    </Frame>
+                </VerticalStackLayout>
+
+                <!-- Filter Section -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Filter by Level"
+                           Style="{StaticResource HeadlineLabelStyle}" />
+
+                    <ScrollView Orientation="Horizontal"
+                                HorizontalScrollBarVisibility="Never">
+                        <HorizontalStackLayout Spacing="8">
+                            <Button Text="All"
+                                    Command="{Binding FilterCommand}"
+                                    CommandParameter="All"
+                                    Style="{StaticResource SecondaryButtonStyle}">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button"
+                                                 Binding="{Binding SelectedLevel}"
+                                                 Value="All">
+                                        <Setter Property="BackgroundColor"
+                                                Value="{StaticResource PrimaryColor}" />
+                                        <Setter Property="TextColor"
+                                                Value="White" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+
+                            <Button Text="State"
+                                    Command="{Binding FilterCommand}"
+                                    CommandParameter="State"
+                                    Style="{StaticResource SecondaryButtonStyle}">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button"
+                                                 Binding="{Binding SelectedLevel}"
+                                                 Value="State">
+                                        <Setter Property="BackgroundColor"
+                                                Value="{StaticResource PrimaryColor}" />
+                                        <Setter Property="TextColor"
+                                                Value="White" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+
+                            <Button Text="County"
+                                    Command="{Binding FilterCommand}"
+                                    CommandParameter="County"
+                                    Style="{StaticResource SecondaryButtonStyle}">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button"
+                                                 Binding="{Binding SelectedLevel}"
+                                                 Value="County">
+                                        <Setter Property="BackgroundColor"
+                                                Value="{StaticResource PrimaryColor}" />
+                                        <Setter Property="TextColor"
+                                                Value="White" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+
+                            <Button Text="City"
+                                    Command="{Binding FilterCommand}"
+                                    CommandParameter="City"
+                                    Style="{StaticResource SecondaryButtonStyle}">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button"
+                                                 Binding="{Binding SelectedLevel}"
+                                                 Value="City">
+                                        <Setter Property="BackgroundColor"
+                                                Value="{StaticResource PrimaryColor}" />
+                                        <Setter Property="TextColor"
+                                                Value="White" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+                        </HorizontalStackLayout>
+                    </ScrollView>
+                </VerticalStackLayout>
+
+                <!-- Representatives List Section -->
+                <VerticalStackLayout Spacing="12">
+                    <HorizontalStackLayout Spacing="8"
+                                           HorizontalOptions="FillAndExpand">
+                        <Label Text="Your Representatives"
+                               Style="{StaticResource HeadlineLabelStyle}"
+                               HorizontalOptions="StartAndExpand" />
+                        <Label Text="{Binding FilteredRepresentatives.Count, StringFormat='{0} found'}"
+                               Style="{StaticResource CaptionLabelStyle}"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <CollectionView ItemsSource="{Binding FilteredRepresentatives}"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnRepresentativeSelected">
+                        <CollectionView.EmptyView>
+                            <VerticalStackLayout Padding="24"
+                                                 Spacing="8">
+                                <Label Text="📭"
+                                       FontSize="48"
+                                       HorizontalTextAlignment="Center" />
+                                <Label Text="No representatives found"
+                                       Style="{StaticResource BodyLabelStyle}"
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold" />
+                                <Label Text="Try adjusting your search or filters"
+                                       Style="{StaticResource CaptionLabelStyle}"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </CollectionView.EmptyView>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Representative">
+                                <Frame Style="{StaticResource CardFrameStyle}">
+                                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                                          ColumnDefinitions="Auto,*"
+                                          ColumnSpacing="16"
+                                          RowSpacing="8">
+
+                                        <!-- Representative Icon/Avatar -->
+                                        <Frame Grid.Row="0"
+                                               Grid.Column="0"
+                                               Grid.RowSpan="3"
+                                               WidthRequest="60"
+                                               HeightRequest="60"
+                                               CornerRadius="30"
+                                               Padding="0"
+                                               HasShadow="False"
+                                               BackgroundColor="{StaticResource PrimaryLightColor}"
+                                               VerticalOptions="Start">
+                                            <Label Text="👤"
+                                                   FontSize="32"
+                                                   HorizontalTextAlignment="Center"
+                                                   VerticalTextAlignment="Center" />
+                                        </Frame>
+
+                                        <!-- Name and Title -->
+                                        <Label Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="{Binding Name}"
+                                               Style="{StaticResource SubheadLabelStyle}"
+                                               Margin="0" />
+
+                                        <Label Grid.Row="1"
+                                               Grid.Column="1"
+                                               Text="{Binding Title}"
+                                               Style="{StaticResource BodyLabelStyle}"
+                                               TextColor="{StaticResource PrimaryColor}"
+                                               Margin="0" />
+
+                                        <!-- Party and District -->
+                                        <HorizontalStackLayout Grid.Row="2"
+                                                               Grid.Column="1"
+                                                               Spacing="12">
+                                            <Border BackgroundColor="{StaticResource SurfaceColor}"
+                                                    Stroke="{StaticResource BorderColor}"
+                                                    StrokeThickness="1"
+                                                    Padding="8,4"
+                                                    StrokeShape="RoundRectangle 12">
+                                                <Label Text="{Binding Party}"
+                                                       Style="{StaticResource CaptionLabelStyle}"
+                                                       FontAttributes="Bold">
+                                                    <Label.Triggers>
+                                                        <DataTrigger TargetType="Label"
+                                                                     Binding="{Binding Party}"
+                                                                     Value="Democrat">
+                                                            <Setter Property="TextColor"
+                                                                    Value="#1E40AF" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label"
+                                                                     Binding="{Binding Party}"
+                                                                     Value="Republican">
+                                                            <Setter Property="TextColor"
+                                                                    Value="#DC2626" />
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label"
+                                                                     Binding="{Binding Party}"
+                                                                     Value="Independent">
+                                                            <Setter Property="TextColor"
+                                                                    Value="#7C3AED" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+                                            </Border>
+
+                                            <Label Text="{Binding District}"
+                                                   Style="{StaticResource CaptionLabelStyle}"
+                                                   VerticalOptions="Center" />
+                                        </HorizontalStackLayout>
+
+                                        <!-- Bio -->
+                                        <Label Grid.Row="3"
+                                               Grid.Column="0"
+                                               Grid.ColumnSpan="2"
+                                               Text="{Binding Bio}"
+                                               Style="{StaticResource CaptionLabelStyle}"
+                                               MaxLines="2"
+                                               LineBreakMode="TailTruncation"
+                                               Margin="0,8,0,0" />
+
+                                        <!-- Stats Section -->
+                                        <Grid Grid.Row="4"
+                                              Grid.Column="0"
+                                              Grid.ColumnSpan="2"
+                                              ColumnDefinitions="*,*,*"
+                                              ColumnSpacing="16"
+                                              Margin="0,8,0,0">
+
+                                            <!-- Consistency Score -->
+                                            <VerticalStackLayout Grid.Column="0"
+                                                                 Spacing="2">
+                                                <Label Text="Consistency"
+                                                       Style="{StaticResource CaptionLabelStyle}"
+                                                       FontSize="11"
+                                                       HorizontalTextAlignment="Start" />
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Label Text="{Binding ConsistencyScore, StringFormat='{0:F1}%'}"
+                                                           Style="{StaticResource BodyLabelStyle}"
+                                                           FontAttributes="Bold"
+                                                           FontSize="15"
+                                                           TextColor="{StaticResource SuccessColor}" />
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+
+                                            <!-- Years in Office -->
+                                            <VerticalStackLayout Grid.Column="1"
+                                                                 Spacing="2">
+                                                <Label Text="Experience"
+                                                       Style="{StaticResource CaptionLabelStyle}"
+                                                       FontSize="11"
+                                                       HorizontalTextAlignment="Start" />
+                                                <Label Text="{Binding YearsInOffice, StringFormat='{0} years'}"
+                                                       Style="{StaticResource BodyLabelStyle}"
+                                                       FontAttributes="Bold"
+                                                       FontSize="15" />
+                                            </VerticalStackLayout>
+
+                                            <!-- Level Badge -->
+                                            <VerticalStackLayout Grid.Column="2"
+                                                                 Spacing="2">
+                                                <Label Text="Level"
+                                                       Style="{StaticResource CaptionLabelStyle}"
+                                                       FontSize="11"
+                                                       HorizontalTextAlignment="Start" />
+                                                <Border BackgroundColor="{StaticResource AccentColor}"
+                                                        Padding="8,4"
+                                                        StrokeShape="RoundRectangle 12"
+                                                        Stroke="Transparent">
+                                                    <Label Text="{Binding Level}"
+                                                           TextColor="White"
+                                                           FontSize="12"
+                                                           FontAttributes="Bold"
+                                                           HorizontalTextAlignment="Center" />
+                                                </Border>
+                                            </VerticalStackLayout>
+                                        </Grid>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ActivityIndicator IsVisible="{Binding IsLoading}"
+                           IsRunning="{Binding IsLoading}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Color="{StaticResource PrimaryColor}" />
+    </Grid>
+</ContentPage>
