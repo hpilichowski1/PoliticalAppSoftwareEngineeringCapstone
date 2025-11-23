@@ -20,8 +20,8 @@
         <Tab Title="Home" Icon="home.png" Route="home">
             <ShellContent
                 Title="Home"
-                ContentTemplate="{DataTemplate local:MainPage}"
-                Route="MainPage" />
+                ContentTemplate="{DataTemplate views:HomePage}"
+                Route="HomePage" />
         </Tab>
         <Tab Title="Representatives" Icon="people.png" Route="representatives">
             <ShellContent

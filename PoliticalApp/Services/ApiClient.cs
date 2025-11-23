@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using System.Text.Json;
 using PoliticalApp.Models;
 
 namespace PoliticalApp.Services;
@@ -9,17 +10,16 @@ public class ApiClient
 
     public ApiClient(HttpClient httpClient)
     {
-        _http = httpClient;
-        _http.BaseAddress = new Uri("https://localhost:5001/"); // modify later for Android/iOS
+        _http = httpClient;  // this is the one configured in MauiProgram
     }
 
     public async Task<LoginResponse?> LoginAsync(string email, string password)
     {
         var req = new LoginRequest { Email = email, Password = password };
 
-        var response = await _http.PostAsJsonAsync("api/auth/login", req);
+        var resp = await _http.PostAsJsonAsync("api/auth/login", req);
 
-        if (!response.IsSuccessStatusCode)
+        if (!resp.IsSuccessStatusCode)
         {
             return new LoginResponse
             {
@@ -28,10 +28,10 @@ public class ApiClient
             };
         }
 
-        return await response.Content.ReadFromJsonAsync<LoginResponse>();
+        return await resp.Content.ReadFromJsonAsync<LoginResponse>();
     }
 
-    public async Task<LoginResponse?> RegisterAsync(string name, string email, string password)
+    public async Task<LoginResponse> RegisterAsync(string name, string email, string password)
     {
         var req = new RegisterRequest
         {
@@ -40,19 +40,58 @@ public class ApiClient
             Password = password
         };
 
-        var response = await _http.PostAsJsonAsync("api/auth/register", req);
+        HttpResponseMessage resp;
 
-        if (!response.IsSuccessStatusCode)
+        try
         {
-            // Try read message if the API sent one
-            var error = await response.Content.ReadFromJsonAsync<LoginResponse>();
-            return error ?? new LoginResponse
+            resp = await _http.PostAsJsonAsync("api/auth/register", req);
+        }
+        catch (Exception ex)
+        {
+            return new LoginResponse
             {
                 Success = false,
-                Message = "Registration failed."
+                Message = "HTTP error (no response): " + ex.Message
             };
         }
 
-        return await response.Content.ReadFromJsonAsync<LoginResponse>();
+        var raw = await resp.Content.ReadAsStringAsync();
+        Console.WriteLine("REGISTER RAW RESPONSE:");
+        Console.WriteLine(raw);
+
+        // If not 2xx, don't try to parse as JSON, just show status + raw body
+        if (!resp.IsSuccessStatusCode)
+        {
+            return new LoginResponse
+            {
+                Success = false,
+                Message = $"HTTP {(int)resp.StatusCode} {resp.StatusCode}: {raw}"
+            };
+        }
+
+        try
+        {
+            var result = JsonSerializer.Deserialize<LoginResponse>(raw,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            if (result == null)
+            {
+                return new LoginResponse
+                {
+                    Success = false,
+                    Message = "Server returned empty response."
+                };
+            }
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            return new LoginResponse
+            {
+                Success = false,
+                Message = $"Invalid JSON from server: {ex.Message}. Raw: {raw}"
+            };
+        }
     }
 }

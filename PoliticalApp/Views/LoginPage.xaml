@@ -5,14 +5,37 @@
     x:Class="PoliticalApp.Views.LoginPage">
 
     <VerticalStackLayout Padding="30" Spacing="20">
-        <Entry Placeholder="Email" Text="{Binding Email}" />
-        <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" />
-        <Button Text="Login" Command="{Binding LoginCommand}" />
+        <Label
+            Text="Welcome back"
+            FontSize="28"
+            HorizontalOptions="Center" />
 
-        <Button Text="Create Account"
-                Clicked="OnRegisterClicked" />
+        <Entry
+            x:Name="EmailEntry"
+            Placeholder="Email"
+            Keyboard="Email" />
 
-        <Label Text="{Binding ErrorMessage}" TextColor="Red" />
+        <Entry
+            x:Name="PasswordEntry"
+            Placeholder="Password"
+            IsPassword="True" />
+
+        <Button
+            Text="Login"
+            Clicked="OnLoginClicked"
+            BackgroundColor="#B399FF"
+            TextColor="Black" />
+
+        <Button
+            Text="Create an account"
+            Clicked="OnRegisterClicked"
+            BackgroundColor="#333333"
+            TextColor="White" />
+
+        <Label
+            x:Name="ErrorLabel"
+            TextColor="Red"
+            IsVisible="False" />
     </VerticalStackLayout>
 
 </ContentPage>

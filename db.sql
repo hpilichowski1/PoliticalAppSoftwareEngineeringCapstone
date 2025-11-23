@@ -1,4 +1,4 @@
--- Active: 1762465600144@@127.0.0.1@3307@PoliticalApp
+-- Active: 1762465600144@@127.0.0.1@3307
 -- Create database
 CREATE DATABASE IF NOT EXISTS PoliticalApp
   DEFAULT CHARACTER SET utf8mb4

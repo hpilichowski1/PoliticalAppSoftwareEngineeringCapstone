@@ -43,10 +43,10 @@ public static class MauiProgram
 		builder.Services.AddTransient<RepresentativesPage>();
 		builder.Services.AddTransient<PoliciesPage>();
 
-		builder.Services.AddSingleton(new HttpClient
-		{
-			BaseAddress = new Uri("http://localhost:5154/")
-		});
+		builder.Services.AddHttpClient<ApiClient>(client =>
+        {
+            client.BaseAddress = new Uri("http://localhost:5154/"); // matches your API
+        });
 
 #if DEBUG
 		builder.Logging.AddDebug();

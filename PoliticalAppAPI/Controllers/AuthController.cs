@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PoliticalAppAPI.DTOs.Auth;
 using PoliticalAppAPI.Models;
+using PoliticalAppAPI.Data;
 
 [ApiController]
 [Route("api/[controller]")]
