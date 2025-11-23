@@ -22,7 +22,6 @@ namespace PoliticalAppAPI.Data
         public DbSet<CivicHub> CivicHubs => Set<CivicHub>();
         public DbSet<CivicHubAlignedRep> CivicHubAlignedReps => Set<CivicHubAlignedRep>();
         public DbSet<CivicHubCuratedNews> CivicHubCuratedNews => Set<CivicHubCuratedNews>();
-
         protected override void OnModelCreating(ModelBuilder mb)
         {
             base.OnModelCreating(mb);

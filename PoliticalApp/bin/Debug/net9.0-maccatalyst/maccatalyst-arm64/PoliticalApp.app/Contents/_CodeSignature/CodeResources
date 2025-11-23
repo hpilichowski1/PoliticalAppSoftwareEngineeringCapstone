@@ -10,7 +10,7 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		dsCYrfbyvqvj1fmn1WBrGEHKJLY=
+		+vFX3pWrmaLKbwwO1frFBQsspqc=
 		</data>
 		<key>Resources/MauiInfo.plist</key>
 		<data>
@@ -82,6 +82,13 @@
 			02IldJz4ekFx2zn/KKDakhZXXFSRLaoUttWTW4Ibf4I=
 			</data>
 		</dict>
+		<key>MonoBundle/Microsoft.Extensions.Configuration.Binder.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Wkd1D1yOuRogOnQ6u9wnx/7O6yIY05RF32VgYpR37sk=
+			</data>
+		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Configuration.dll</key>
 		<dict>
 			<key>hash2</key>
@@ -103,6 +110,27 @@
 			QHE3JiruErDdWIJY+cK/jJESnxGYlvYL0bzTtn9NWRY=
 			</data>
 		</dict>
+		<key>MonoBundle/Microsoft.Extensions.Diagnostics.Abstractions.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			vqPPIlWZsFpSGQLhLiPeaiMJk337N2PM0s6mKtLE/jc=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.Extensions.Diagnostics.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			XINlDxwKFcjjgxpNSACLO6ozhQWjvkh4Cj2Gws1GYqA=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.Extensions.Http.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			0tSMCDsjXlDX/eNpkwEx1sspQcLG7HJ5WKI9RegEi1U=
+			</data>
+		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Logging.Abstractions.dll</key>
 		<dict>
 			<key>hash2</key>
@@ -122,6 +150,13 @@
 			<key>hash2</key>
 			<data>
 			onNmUUHjSXdvz/zbM79V/3uuvxiFsNxchY8nL4szhSQ=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.Extensions.Options.ConfigurationExtensions.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			uep7twv+z1xknyVZMA/OIycpJXz9tCIdyW8ep3gic1M=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Options.dll</key>
@@ -157,13 +192,6 @@
 			<key>hash2</key>
 			<data>
 			6vkdWwR+qs9wDUZQYLflGHXDXfvlTnm13bhmGLVnkoA=
-			</data>
-		</dict>
-		<key>MonoBundle/Microsoft.Maui.Controls.HotReload.Forms.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XWFvQUbrEKy5gYQN4OHirpPzVf6lfmWo8M5EDnvJJHE=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Maui.Controls.Xaml.dll</key>
@@ -215,27 +243,6 @@
 			rVyw9LLftqmkqnalOKW3l7JtHTB5vCSJjuRfiAh4vUo=
 			</data>
 		</dict>
-		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			exoJIWO+xZR7QYGcJrIpooCoAw0EWs6//Al7YTkXnVc=
-			</data>
-		</dict>
-		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.TapContract.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			sFZ0RIZ9MawV847xJ0Eux85HB7wkdqvr52ZWZ7OatbM=
-			</data>
-		</dict>
-		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.XamlTapContract.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			NHj1lE0oL04MxhIOGiP2kynvmTTN5PWl6mzs02Lvjiw=
-			</data>
-		</dict>
 		<key>MonoBundle/Microsoft.Win32.Primitives.dll</key>
 		<dict>
 			<key>hash2</key>
@@ -254,14 +261,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			s25lR1PX2UUWunxdwn3COiKtqx/NWL7o/cD934KZTb0=
+			AxYX5EcpwhiVLQ0WBiGVeP/cXvD6KtB7DJV5Sp1PanI=
 			</data>
 		</dict>
 		<key>MonoBundle/PoliticalApp.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			BSjyIiURqpAzsrAFUyZgiGV6DoAF2FAY8XJPqCdKFfs=
+			MT5fAXtCTspY5Hrz1BeZ3d0jpCWNQqh7uMZADEFj6UQ=
 			</data>
 		</dict>
 		<key>MonoBundle/System.AppContext.dll</key>
@@ -1675,7 +1682,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			c9Uri5cQf1/1eVd+XUqGPSgHJAlKnAO/Q76g82tS76E=
+			UnrIs70K+4oAVsTWjJ1yoBiZBS1ZtxxDRoe2Ls2qa8Y=
 			</data>
 		</dict>
 		<key>Resources/MauiInfo.plist</key>

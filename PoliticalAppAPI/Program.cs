@@ -1,16 +1,22 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using PoliticalAppAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // DB (MySQL via Pomelo)
-var conn = builder.Configuration.GetConnectionString("Default");
+var conn = builder.Configuration.GetConnectionString("DefaultConnection")
+           ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services.AddDbContext<AppDbContext>(opts =>
-    opts.UseMySql(conn, new MySqlServerVersion(new Version(8,0,36)))
+{
+    var serverVersion = ServerVersion.AutoDetect(conn);
+
+    opts.UseMySql(conn, serverVersion)
         .EnableDetailedErrors()
         .EnableSensitiveDataLogging()
-        .LogTo(Console.WriteLine, LogLevel.Information));
+        .LogTo(Console.WriteLine, LogLevel.Information);
+});
 
 builder.Services.AddControllers();
 
@@ -27,5 +33,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthorization();
 app.MapControllers();
+
 app.Run();

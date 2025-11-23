@@ -9,6 +9,14 @@
     FlyoutBehavior="Disabled">
 
     <TabBar>
+        <!-- 👇 changed pages:LoginPage -> views:LoginPage -->
+        <ShellContent Route="LoginPage"
+                      ContentTemplate="{DataTemplate views:LoginPage}" />
+        <ShellContent Route="RegisterPage"
+                  ContentTemplate="{DataTemplate views:RegisterPage}" />
+    </TabBar>
+
+    <TabBar>
         <Tab Title="Home" Icon="home.png" Route="home">
             <ShellContent
                 Title="Home"

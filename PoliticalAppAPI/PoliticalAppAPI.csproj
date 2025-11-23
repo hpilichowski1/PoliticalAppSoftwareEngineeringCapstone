@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net9.0-ios;net9.0-android;net9.0-maccatalyst</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+    <RuntimeIdentifiers>ios-arm64;iossimulator-arm64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>

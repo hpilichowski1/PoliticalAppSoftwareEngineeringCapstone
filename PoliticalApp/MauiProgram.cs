@@ -3,6 +3,7 @@ using CommunityToolkit.Maui;
 using PoliticalApp.Services;
 using PoliticalApp.ViewModels;
 using PoliticalApp.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace PoliticalApp;
 
@@ -28,6 +29,13 @@ public static class MauiProgram
 		builder.Services.AddTransient<HomeViewModel>();
 		builder.Services.AddTransient<RepresentativesViewModel>();
 		builder.Services.AddTransient<PoliciesViewModel>();
+
+		builder.Services.AddHttpClient<ApiClient>();
+		builder.Services.AddTransient<LoginViewModel>();
+		builder.Services.AddTransient<LoginPage>();
+
+		builder.Services.AddTransient<RegisterViewModel>();
+		builder.Services.AddTransient<RegisterPage>();	
 
 		// Register Pages
 		builder.Services.AddTransient<MainPage>();

@@ -1,51 +1,104 @@
-using BCrypt.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PoliticalAppAPI.Data;
-using PoliticalAppAPI.DTOs;
+using PoliticalAppAPI.DTOs.Auth;
 using PoliticalAppAPI.Models;
-
-namespace PoliticalAppAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController(AppDbContext db) : ControllerBase
+public class AuthController : ControllerBase
 {
-    private readonly AppDbContext _db = db;
+    private readonly AppDbContext _db;
+
+    public AuthController(AppDbContext db)
+    {
+        _db = db;
+    }
+
+    [HttpPost("login")]
+    public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginRequest request)
+    {
+        var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+
+        if (user == null)
+        {
+            return Unauthorized(new LoginResponse
+            {
+                Success = false,
+                Message = "Invalid email or password."
+            });
+        }
+
+        bool passwordMatches = BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash);
+
+        if (!passwordMatches)
+        {
+            return Unauthorized(new LoginResponse
+            {
+                Success = false,
+                Message = "Invalid email or password."
+            });
+        }
+
+        return Ok(new LoginResponse
+        {
+            Success = true,
+            Message = "Login successful.",
+            UserId = user.UserId,
+            Name = user.Name,
+            Role = user.Role,
+            Email = user.Email
+        });
+    }
 
     [HttpPost("register")]
-    public async Task<ActionResult<AuthResponse>> Register(RegisterRequest req)
+    public async Task<ActionResult<LoginResponse>> Register([FromBody] RegisterRequest request)
     {
-        // basic uniqueness check
-        var exists = await _db.Users.AnyAsync(u => u.Email == req.Email);
-        if (exists) return Conflict("Email is already registered.");
+        // 1. Basic validation
+        if (string.IsNullOrWhiteSpace(request.Email) ||
+            string.IsNullOrWhiteSpace(request.Password) ||
+            string.IsNullOrWhiteSpace(request.Name))
+        {
+            return BadRequest(new LoginResponse
+            {
+                Success = false,
+                Message = "Name, email, and password are required."
+            });
+        }
 
+        // 2. Check if email already exists
+        var existing = await _db.Users
+            .FirstOrDefaultAsync(u => u.Email == request.Email);
+
+        if (existing != null)
+        {
+            return Conflict(new LoginResponse
+            {
+                Success = false,
+                Message = "An account with this email already exists."
+            });
+        }
+
+        // 3. Create user with hashed password
         var user = new User
         {
-            UserId = Guid.NewGuid().ToString(),
-            Name = req.Name.Trim(),
-            Email = req.Email.Trim().ToLowerInvariant(),
+            Name = request.Name,
+            Email = request.Email,
             Role = "citizen",
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword(req.Password)
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
         };
 
         _db.Users.Add(user);
         await _db.SaveChangesAsync();
 
-        return new AuthResponse(user.UserId, user.Name, user.Email, user.Role);
-    }
-
-    [HttpPost("login")]
-    public async Task<ActionResult<AuthResponse>> Login(LoginRequest req)
-    {
-        var email = req.Email.Trim().ToLowerInvariant();
-        var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
-        if (user is null || string.IsNullOrEmpty(user.PasswordHash))
-            return Unauthorized("Invalid credentials.");
-
-        var ok = BCrypt.Net.BCrypt.Verify(req.Password, user.PasswordHash);
-        if (!ok) return Unauthorized("Invalid credentials.");
-
-        return new AuthResponse(user.UserId, user.Name, user.Email, user.Role);
+        // 4. Return same shape as login
+        return Ok(new LoginResponse
+        {
+            Success = true,
+            Message = "Registration successful.",
+            UserId = user.UserId,
+            Name = user.Name,
+            Email = user.Email,
+            Role = user.Role
+        });
     }
 }
