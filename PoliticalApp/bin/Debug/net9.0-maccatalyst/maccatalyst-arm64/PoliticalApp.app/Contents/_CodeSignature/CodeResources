@@ -79,7 +79,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			02IldJz4ekFx2zn/KKDakhZXXFSRLaoUttWTW4Ibf4I=
+			xCIp0vZ8KxF/39Sp9N1RpJdXuQvTDv8j0NPODX55iPM=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Configuration.Binder.dll</key>
@@ -93,21 +93,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uHC1evCXvVMXZlAKnk79TGdRDuqgE0bNQkcuSL3Istw=
+			PY0QXZwoDeX4AOEqOMQjG4RJfxgtotD2W6neY2pi7BU=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.DependencyInjection.Abstractions.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			P3M/pByLc1zz96Gkm0PNQaKRvO05U77kbiuAGL5n9Ew=
+			nbT5NHwrAJrHvCjSVDlcN3EVes7x8YlBi2lx9IlaNS8=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.DependencyInjection.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			QHE3JiruErDdWIJY+cK/jJESnxGYlvYL0bzTtn9NWRY=
+			wfQAx0/RQRaf9FzlpPhkrUCl4Sc3r7fHDlrEdhLf/1U=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Diagnostics.Abstractions.dll</key>
@@ -135,7 +135,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Yiz2yv0dWkAsEldFFd+quM6ZAYqLHTJARUh+16Xfu2I=
+			JORW5LWz+s7Lhwnm9cccBs+SjjFJLK4Kej7Bs5GMGTs=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.Extensions.Logging.Configuration.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QAu4hU8Yfo6gVBCDTaraX6VC5MseQWYiU8D/kgFIj/c=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.Extensions.Logging.Console.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Hbx9pc2AVum6AgbxKHOUMK+3+OjWzKn0X1lDkY7meG4=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Logging.Debug.dll</key>
@@ -149,7 +163,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			onNmUUHjSXdvz/zbM79V/3uuvxiFsNxchY8nL4szhSQ=
+			JwV4wRYCKHxYfvH4t8t7XGrQAHA/yQX94eLsgQnrmQQ=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Options.ConfigurationExtensions.dll</key>
@@ -163,14 +177,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ai4wrjzm3S1bRSbwHv+uX8NPZCoaY5qpYFWQmGx1FWA=
+			qA0VzPkBNqLP2T8fvyL6zPHfYSMG5Kksqgq9xHYoe3s=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Primitives.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			a/AFLkBF2JOQlgsydBo/T0cFAFbIcK1f4YnT3qcBgso=
+			GqtNmXwvzJj9rR9j9BJ0IbJMljyC9AZZgIbpTPdk6b8=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.MacCatalyst.dll</key>
@@ -192,6 +206,13 @@
 			<key>hash2</key>
 			<data>
 			6vkdWwR+qs9wDUZQYLflGHXDXfvlTnm13bhmGLVnkoA=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.Maui.Controls.HotReload.Forms.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			VVeB2W4DanTiDPGY4wBgK9GQtvqTTxcT99ZQx5gLTtA=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Maui.Controls.Xaml.dll</key>
@@ -243,6 +264,27 @@
 			rVyw9LLftqmkqnalOKW3l7JtHTB5vCSJjuRfiAh4vUo=
 			</data>
 		</dict>
+		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tkqrdKLsXpmR8Idl0bTuv3lN4EquILhUsflRwo+DQHc=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.TapContract.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gY4UPEIGZ948PsFqIaLYPQAqoEyvMxxA04Gz2zwX5gY=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.XamlTapContract.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			wElwgSmk/Wlh7i5gBBNJD7bS6y5kWjVWGBXkfQlywoo=
+			</data>
+		</dict>
 		<key>MonoBundle/Microsoft.Win32.Primitives.dll</key>
 		<dict>
 			<key>hash2</key>
@@ -261,14 +303,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			fkxbfk+sxDH+kOVdfFasn0E9DqVJg2L4GDc25Oer17I=
+			QxGQ+EN5HvuIkdum7XSbDMHhQ/o+Pt1JnGGn8q9PZW4=
 			</data>
 		</dict>
 		<key>MonoBundle/PoliticalApp.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2HN7daDShkldyMowM8OwmWDcILRGRNVHS/3q1LkfXC8=
+			MtnP8qzZRAXgEAK3OpJD6y/wwPA9/IKpN7b9tEpUcwU=
 			</data>
 		</dict>
 		<key>MonoBundle/System.AppContext.dll</key>
@@ -422,7 +464,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jwQfQFGXkKxuyCipf5tPUGsHjoPp89Wf+a3Dcbprqy4=
+			RT6m2jngCyYrdZRXaJI3YCfzL3tb1cjZJvZBARvFLxo=
 			</data>
 		</dict>
 		<key>MonoBundle/System.Diagnostics.FileVersionInfo.dll</key>
@@ -611,7 +653,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3K93vfCqdk9dNSWB14zaBNVuyFZ/kvm7OcQ7K5M/Uxg=
+			CC263FwcCLAey80ZPzwyp5U6MZGs1za862veKvXUBOY=
 			</data>
 		</dict>
 		<key>MonoBundle/System.IO.Pipes.AccessControl.dll</key>
@@ -1206,14 +1248,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5SWp6K20vHB9p8d1mxFqnvO9ybuRkxsZZacQQiQRwrw=
+			Uh8/5U6PRx9x5QC1B+hKWngJNeaCxsWAbQ58Cnxt6zM=
 			</data>
 		</dict>
 		<key>MonoBundle/System.Text.Json.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WbGdiDMnKv+myl9cbnA0LQ6x9jB1ezYcTBslbo/7ux0=
+			X0SMV6JJsLsOrc09+vbwaxVYKN408OUjd0sAplV0Sy8=
 			</data>
 		</dict>
 		<key>MonoBundle/System.Text.RegularExpressions.dll</key>

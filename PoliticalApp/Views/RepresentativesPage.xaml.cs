@@ -1,23 +1,42 @@
+using System.Linq;
+using Microsoft.Maui.Controls;
+using PoliticalApp.Models;
 using PoliticalApp.ViewModels;
 
 namespace PoliticalApp.Views
 {
-    /// <summary>
-    /// Page for displaying and searching representatives.
-    /// </summary>
     public partial class RepresentativesPage : ContentPage
     {
+        private RepresentativesViewModel ViewModel => (RepresentativesViewModel)BindingContext;
+
         public RepresentativesPage(RepresentativesViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;
         }
 
-        private void OnRepresentativeSelected(object sender, SelectionChangedEventArgs e)
+        protected override async void OnAppearing()
         {
-            if (sender is CollectionView collectionView)
+            base.OnAppearing();
+
+            // TODO: replace "FL" with the user's state (or pass in via navigation params)
+            if (!ViewModel.HasLoaded)
             {
-                collectionView.SelectedItem = null;
+                await ViewModel.LoadRepresentativesAsync("FL");
+            }
+        }
+
+        private async void OnRepresentativeSelected(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection?.FirstOrDefault() is Representative rep)
+            {
+                // For now just show a simple detail popup.
+                await DisplayAlert(rep.Name, rep.Bio, "OK");
+
+                if (sender is CollectionView cv)
+                {
+                    cv.SelectedItem = null;
+                }
             }
         }
     }

@@ -24,7 +24,7 @@
                     <Frame Style="{StaticResource CardFrameStyle}"
                            Padding="0"
                            Margin="0">
-                        <SearchBar Placeholder="Search by name, title, or district"
+                        <SearchBar Placeholder="Search by lastname, title, or district"
                                    Text="{Binding SearchText}"
                                    SearchCommand="{Binding SearchCommand}"
                                    BackgroundColor="Transparent"
@@ -34,89 +34,44 @@
 
                 <!-- Filter Section -->
                 <VerticalStackLayout Spacing="12">
-                    <Label Text="Filter by Level"
-                           Style="{StaticResource HeadlineLabelStyle}" />
+                    <Label Text="Filter by State and District"
+                        Style="{StaticResource HeadlineLabelStyle}" />
 
-                    <ScrollView Orientation="Horizontal"
-                                HorizontalScrollBarVisibility="Never">
-                        <HorizontalStackLayout Spacing="8">
-                            <Button Text="All"
-                                    Command="{Binding FilterCommand}"
-                                    CommandParameter="All"
-                                    Style="{StaticResource SecondaryButtonStyle}">
-                                <Button.Triggers>
-                                    <DataTrigger TargetType="Button"
-                                                 Binding="{Binding SelectedLevel}"
-                                                 Value="All">
-                                        <Setter Property="BackgroundColor"
-                                                Value="{StaticResource PrimaryColor}" />
-                                        <Setter Property="TextColor"
-                                                Value="White" />
-                                    </DataTrigger>
-                                </Button.Triggers>
-                            </Button>
+                    <HorizontalStackLayout Spacing="12">
+                        <!-- State Picker -->
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="State"
+                                Style="{StaticResource CaptionLabelStyle}" />
+                            <Picker ItemsSource="{Binding AvailableStates}"
+                                    SelectedItem="{Binding SelectedState}"
+                                    Title="All states"
+                                    HorizontalOptions="FillAndExpand" />
+                        </VerticalStackLayout>
 
-                            <Button Text="State"
-                                    Command="{Binding FilterCommand}"
-                                    CommandParameter="State"
-                                    Style="{StaticResource SecondaryButtonStyle}">
-                                <Button.Triggers>
-                                    <DataTrigger TargetType="Button"
-                                                 Binding="{Binding SelectedLevel}"
-                                                 Value="State">
-                                        <Setter Property="BackgroundColor"
-                                                Value="{StaticResource PrimaryColor}" />
-                                        <Setter Property="TextColor"
-                                                Value="White" />
-                                    </DataTrigger>
-                                </Button.Triggers>
-                            </Button>
-
-                            <Button Text="County"
-                                    Command="{Binding FilterCommand}"
-                                    CommandParameter="County"
-                                    Style="{StaticResource SecondaryButtonStyle}">
-                                <Button.Triggers>
-                                    <DataTrigger TargetType="Button"
-                                                 Binding="{Binding SelectedLevel}"
-                                                 Value="County">
-                                        <Setter Property="BackgroundColor"
-                                                Value="{StaticResource PrimaryColor}" />
-                                        <Setter Property="TextColor"
-                                                Value="White" />
-                                    </DataTrigger>
-                                </Button.Triggers>
-                            </Button>
-
-                            <Button Text="City"
-                                    Command="{Binding FilterCommand}"
-                                    CommandParameter="City"
-                                    Style="{StaticResource SecondaryButtonStyle}">
-                                <Button.Triggers>
-                                    <DataTrigger TargetType="Button"
-                                                 Binding="{Binding SelectedLevel}"
-                                                 Value="City">
-                                        <Setter Property="BackgroundColor"
-                                                Value="{StaticResource PrimaryColor}" />
-                                        <Setter Property="TextColor"
-                                                Value="White" />
-                                    </DataTrigger>
-                                </Button.Triggers>
-                            </Button>
-                        </HorizontalStackLayout>
-                    </ScrollView>
+                        <!-- District Picker -->
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="District"
+                                Style="{StaticResource CaptionLabelStyle}" />
+                            <Picker ItemsSource="{Binding AvailableDistricts}"
+                                    SelectedItem="{Binding SelectedDistrict}"
+                                    Title="All districts"
+                                    HorizontalOptions="FillAndExpand" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
                 </VerticalStackLayout>
+
 
                 <!-- Representatives List Section -->
                 <VerticalStackLayout Spacing="12">
                     <HorizontalStackLayout Spacing="8"
                                            HorizontalOptions="FillAndExpand">
                         <Label Text="Your Representatives"
-                               Style="{StaticResource HeadlineLabelStyle}"
-                               HorizontalOptions="StartAndExpand" />
-                        <Label Text="{Binding FilteredRepresentatives.Count, StringFormat='{0} found'}"
-                               Style="{StaticResource CaptionLabelStyle}"
-                               VerticalOptions="Center" />
+                                Style="{StaticResource HeadlineLabelStyle}"
+                                HorizontalOptions="StartAndExpand" />
+                        <Label Text="{Binding SearchSummary}"
+                                Style="{StaticResource CaptionLabelStyle}"
+                                VerticalOptions="Center" />
+
                     </HorizontalStackLayout>
 
                     <CollectionView ItemsSource="{Binding FilteredRepresentatives}"

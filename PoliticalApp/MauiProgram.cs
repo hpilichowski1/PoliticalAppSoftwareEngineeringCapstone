@@ -22,7 +22,8 @@ public static class MauiProgram
 			});
 
 		// Register Services
-		builder.Services.AddSingleton<IRepresentativeService, MockRepresentativeService>();
+		builder.Services.AddHttpClient<IRepresentativeService, RepresentativeService>();
+		builder.Services.AddSingleton<RepresentativesViewModel>();
 		builder.Services.AddSingleton<IPolicyService, MockPolicyService>();
 
 		// Register ViewModels
@@ -42,6 +43,8 @@ public static class MauiProgram
 		builder.Services.AddTransient<HomePage>();
 		builder.Services.AddTransient<RepresentativesPage>();
 		builder.Services.AddTransient<PoliciesPage>();
+
+		builder.Logging.AddDebug();
 
 		builder.Services.AddHttpClient<ApiClient>(client =>
         {

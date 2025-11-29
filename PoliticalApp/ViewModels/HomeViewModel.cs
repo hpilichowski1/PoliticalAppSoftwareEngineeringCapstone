@@ -69,7 +69,7 @@ public partial class HomeViewModel : ObservableObject
                 new CivicStat
                 {
                     Label = "Representatives Followed",
-                    Value = "5",
+                    Value = representatives.Count.ToString(),  // 👈 use real count
                     Icon = "👥",
                     TrendDirection = representativeTrend
                 },
