@@ -22,7 +22,6 @@ public static class MauiProgram
 			});
 
 		// Register Services
-		builder.Services.AddHttpClient<IRepresentativeService, RepresentativeService>();
 		builder.Services.AddSingleton<RepresentativesViewModel>();
 		builder.Services.AddSingleton<IPolicyService, MockPolicyService>();
 
@@ -49,6 +48,12 @@ public static class MauiProgram
 		builder.Services.AddHttpClient<ApiClient>(client =>
         {
             client.BaseAddress = new Uri("http://localhost:5154/"); // matches your API
+        });
+
+		builder.Services.AddHttpClient<IRepresentativeService, ApiRepresentativeService>(client =>
+        {
+            // NOTE: set to your real API URL
+            client.BaseAddress = new Uri("http://localhost:5154/");
         });
 
 #if DEBUG

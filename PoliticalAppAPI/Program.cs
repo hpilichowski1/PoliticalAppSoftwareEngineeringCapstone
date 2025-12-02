@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PoliticalAppAPI.Data;
+using PoliticalAppAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,15 @@ builder.Services.AddControllers();
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddHttpClient("CongressGov", (sp, client) =>
+{
+    var cfg = sp.GetRequiredService<IConfiguration>();
+    var baseUrl = cfg["CongressGov:BaseUrl"] ?? "https://api.congress.gov";
+    client.BaseAddress = new Uri(baseUrl);
+});
+
+builder.Services.AddScoped<IRepresentativeSyncService, RepresentativeSyncService>();
 
 var app = builder.Build();
 

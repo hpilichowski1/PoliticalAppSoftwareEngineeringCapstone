@@ -164,8 +164,9 @@ namespace PoliticalApp.ViewModels
                 FilteredRepresentatives.Clear();
                 SearchSummary = string.Empty;
 
+                // ✅ Get ALL reps from your own API/DB
                 var reps = await _representativeService.GetRepresentativesAsync(
-                    stateCode: null,   // <-- all states (if your service supports it)
+                    stateCode: null,
                     level: null,
                     search: null);
 
@@ -174,12 +175,18 @@ namespace PoliticalApp.ViewModels
                     Representatives.Add(r);
                 }
 
-                // Build dropdown lists
                 BuildAvailableStates();
                 UpdateAvailableDistricts();
 
-                ApplyFilters();
+                // If caller passed "FL", set that as default selection
+                if (!string.IsNullOrWhiteSpace(stateCode) &&
+                    AvailableStates.Contains(stateCode.ToUpperInvariant()))
+                {
+                    SelectedState = stateCode.ToUpperInvariant();
+                    UpdateAvailableDistricts();
+                }
 
+                ApplyFilters();
                 HasLoaded = true;
             }
             catch (Exception ex)
@@ -191,6 +198,7 @@ namespace PoliticalApp.ViewModels
                 IsLoading = false;
             }
         }
+
 
         private void ExecuteSearch()
         {
