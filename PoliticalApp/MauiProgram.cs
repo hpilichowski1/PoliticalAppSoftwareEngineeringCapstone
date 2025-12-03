@@ -25,10 +25,13 @@ public static class MauiProgram
 		builder.Services.AddSingleton<RepresentativesViewModel>();
 		builder.Services.AddSingleton<IPolicyService, MockPolicyService>();
 
+		builder.Services.AddSingleton<IBillService, ApiBillService>();
+		builder.Services.AddTransient<BillsViewModel>();
+		builder.Services.AddTransient<BillsPage>();
+
 		// Register ViewModels
 		builder.Services.AddTransient<HomeViewModel>();
 		builder.Services.AddTransient<RepresentativesViewModel>();
-		builder.Services.AddTransient<PoliciesViewModel>();
 
 		builder.Services.AddHttpClient<ApiClient>();
 		builder.Services.AddTransient<LoginViewModel>();
@@ -41,7 +44,6 @@ public static class MauiProgram
 		builder.Services.AddTransient<MainPage>();
 		builder.Services.AddTransient<HomePage>();
 		builder.Services.AddTransient<RepresentativesPage>();
-		builder.Services.AddTransient<PoliciesPage>();
 
 		builder.Logging.AddDebug();
 
@@ -55,6 +57,11 @@ public static class MauiProgram
             // NOTE: set to your real API URL
             client.BaseAddress = new Uri("http://localhost:5154/");
         });
+
+		builder.Services.AddHttpClient<IBillService, ApiBillService>(client =>
+		{
+			client.BaseAddress = new Uri("http://localhost:5154/"); // adjust if different
+		});
 
 #if DEBUG
 		builder.Logging.AddDebug();

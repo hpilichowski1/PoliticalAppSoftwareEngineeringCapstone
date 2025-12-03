@@ -29,11 +29,11 @@
                 ContentTemplate="{DataTemplate views:RepresentativesPage}"
                 Route="RepresentativesPage" />
         </Tab>
-        <Tab Title="Policies" Icon="document.png" Route="policies">
+        <Tab Title="Bills" Icon="document.png" Route="bills">
             <ShellContent
-                Title="Policies"
-                ContentTemplate="{DataTemplate views:PoliciesPage}"
-                Route="PoliciesPage" />
+                Title="Bills"
+                ContentTemplate="{DataTemplate views:BillsPage}"
+                Route="BillsPage" />
         </Tab>
         <Tab Title="Profile" Icon="person.png" Route="profile">
             <ShellContent

@@ -9,6 +9,7 @@ namespace PoliticalAppAPI.Data
 
         public DbSet<User> Users => Set<User>();
         public DbSet<Representative> Representatives => Set<Representative>();
+        public DbSet<Bill> Bills => Set<Bill>();
 
     }
 }

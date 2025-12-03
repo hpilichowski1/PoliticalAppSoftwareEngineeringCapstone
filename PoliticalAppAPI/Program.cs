@@ -33,6 +33,7 @@ builder.Services.AddHttpClient("CongressGov", (sp, client) =>
 });
 
 builder.Services.AddScoped<IRepresentativeSyncService, RepresentativeSyncService>();
+builder.Services.AddScoped<IBillSyncService, BillSyncService>();
 
 var app = builder.Build();
 

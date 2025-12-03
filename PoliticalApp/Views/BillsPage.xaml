@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PoliticalApp.Views.BillsPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PoliticalApp.ViewModels"
+             xmlns:models="clr-namespace:PoliticalApp.Models"
+             x:DataType="viewModels:BillsViewModel"
+             Title="Bills"
+             BackgroundColor="{StaticResource BackgroundColor}">
+
+    <Grid>
+        <CollectionView ItemsSource="{Binding Bills}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Bill">
+                    <Frame Margin="16,8"
+                           Padding="16"
+                           CornerRadius="12"
+                           HasShadow="True"
+                           BackgroundColor="White">
+                        <VerticalStackLayout Spacing="6">
+                            <!-- Bill title -->
+                            <Label Text="{Binding Title}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   LineBreakMode="WordWrap" />
+
+                            <!-- Type + number + congress -->
+                            <Label FontSize="13"
+                                   TextColor="Gray">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}{0} {1} · {2}th Congress">
+                                        <Binding Path="BillType" />
+                                        <Binding Path="BillNumber" />
+                                        <Binding Path="Congress" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+
+                            <!-- Latest action date + text -->
+                            <Label FontSize="13"
+                                   TextColor="Gray"
+                                   LineBreakMode="WordWrap">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}{0:d} — {1}">
+                                        <Binding Path="LatestActionDate" />
+                                        <Binding Path="LatestActionText" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Simple loading spinner -->
+        <ActivityIndicator IsRunning="{Binding IsLoading}"
+                           IsVisible="{Binding IsLoading}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+    </Grid>
+</ContentPage>

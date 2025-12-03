@@ -53,6 +53,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Resources.Sty
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
 
+[/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/Views/BillsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Views.BillsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/BillsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/BillsPage.xaml
+
 [/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/Views/HomePage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Views.HomePage.xaml
@@ -64,12 +70,6 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Views.LoginPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views/LoginPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/LoginPage.xaml
-
-[/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/Views/PoliciesPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Views.PoliciesPage.xaml
-build_metadata.AdditionalFiles.TargetPath = Views/PoliciesPage.xaml
-build_metadata.AdditionalFiles.RelativePath = Views/PoliciesPage.xaml
 
 [/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/Views/RegisterPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
