@@ -1,4 +1,6 @@
 using System.Text.Json;
+using System.Net;
+using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -102,6 +104,7 @@ namespace PoliticalAppAPI.Services
                 .Take(pageSize)
                 .ToListAsync();
 
+            await EnsureSummariesAsync(items);
             return (items, totalInDb);
         }
 
@@ -150,10 +153,6 @@ namespace PoliticalAppAPI.Services
                 $"?api_key={_apiKey}&format=json" +
                 $"&limit={limit}&offset={offset}";
 
-            _logger.LogInformation(
-                "Fetching bills page {Page} from Congress.gov (limit {Limit}, offset {Offset})",
-                page, limit, offset);
-
             var response = await _http.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)
@@ -176,7 +175,7 @@ namespace PoliticalAppAPI.Services
 
             foreach (var billEl in billsEl.EnumerateArray())
             {
-                var parsed = ParseBill(billEl, now);
+                var parsed = await ParseBill(billEl, now);
                 if (parsed != null)
                     list.Add(parsed);
             }
@@ -186,7 +185,7 @@ namespace PoliticalAppAPI.Services
 
 
 
-        private Bill? ParseBill(JsonElement b, DateTime now)
+        private async Task<Bill?> ParseBill(JsonElement b, DateTime now)
         {
             try
             {
@@ -272,6 +271,15 @@ namespace PoliticalAppAPI.Services
                 {
                     sponsorName = snEl.GetString();
                 }
+                
+                string? summary = null;
+
+                if (congress > 0)
+                {
+                    summary = await FetchSummaryFromCongressAsync(congress, billType, billNumber);
+                    Console.WriteLine("Fetched summary for bill: " +
+                        (summary?.Substring(0, Math.Min(50, summary.Length)) ?? "null"));
+                }
 
                 return new Bill
                 {
@@ -283,7 +291,7 @@ namespace PoliticalAppAPI.Services
                     LatestActionText = latestActionText,
                     PolicyArea = policyArea,
                     SponsorName = sponsorName,
-                    SummaryText = null,
+                    SummaryText = summary,
                     LastUpdatedUtc = now
                 };
             }
@@ -294,37 +302,93 @@ namespace PoliticalAppAPI.Services
             }
         }
 
-
-
-        private async Task<string?> FetchSummaryFromCongressAsync(
-            int congress, string billType, int billNumber)
+        private async Task<string?> FetchSummaryFromCongressAsync(int congress, string billType, int billNumber)
         {
-            // Using summaries endpoint: /summaries/{congress}/{billType}/{billNumber}
             var url =
-                $"/v3/summaries/{congress}/{billType}/{billNumber}" +
-                $"?api_key={_apiKey}&format=json&limit=1&sort=updateDate+desc";
+                $"/v3/bill/{congress}/{billType.ToLowerInvariant()}/{billNumber}/summaries" +
+                $"?api_key={_apiKey}&format=json";
+
+            Console.WriteLine("Fetching summary from URL: " + url);
 
             var json = await _http.GetStringAsync(url);
             using var doc = JsonDocument.Parse(json);
 
-            if (!doc.RootElement.TryGetProperty("summaries", out var arr) ||
-                arr.ValueKind != JsonValueKind.Array ||
-                arr.GetArrayLength() == 0)
+            var root = doc.RootElement;
+
+            // The data array is usually called "summaries" for this endpoint.
+            if (!root.TryGetProperty("summaries", out var summariesEl) ||
+                summariesEl.ValueKind != JsonValueKind.Array ||
+                summariesEl.GetArrayLength() == 0)
             {
                 return null;
             }
 
-            var first = arr[0];
-            if (first.TryGetProperty("text", out var textEl))
-            {
-                var full = textEl.GetString();
-                if (string.IsNullOrWhiteSpace(full)) return null;
+            var first = summariesEl[0];
 
-                // Trim to a "little summary"
-                return full.Length > 800 ? full[..800] + "..." : full;
+            if (!first.TryGetProperty("text", out var textEl))
+                return null;
+
+            var full = textEl.GetString();
+            if (string.IsNullOrWhiteSpace(full))
+                return null;
+
+            // You can trim here if you ever want a shorter snippet
+            return NormalizeSummaryToPlainText(full);
+        }
+
+        private async Task EnsureSummariesAsync(IEnumerable<Bill> bills, CancellationToken ct = default)
+        {
+            var needs = bills
+                .Where(b => b.Congress > 0 && string.IsNullOrWhiteSpace(b.SummaryText))
+                .ToList();
+
+            if (needs.Count == 0)
+                return;
+
+            foreach (var bill in needs)
+            {
+                try
+                {
+                    var summary = await FetchSummaryFromCongressAsync(
+                        bill.Congress, bill.BillType, bill.BillNumber);
+
+                    if (!string.IsNullOrWhiteSpace(summary))
+                    {
+                        bill.SummaryText = summary;
+                        bill.LastUpdatedUtc = DateTime.UtcNow;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex,
+                        "Failed to fetch summary for {Type} {Number} ({Congress})",
+                        bill.BillType, bill.BillNumber, bill.Congress);
+                }
             }
 
-            return null;
+            await _db.SaveChangesAsync(ct);
+        }
+
+        private static string? NormalizeSummaryToPlainText(string? html)
+        {
+            if (string.IsNullOrWhiteSpace(html))
+                return null;
+
+            // Turn paragraph / <br> tags into line breaks first
+            html = Regex.Replace(html, @"</p\s*>", "\n\n", RegexOptions.IgnoreCase);
+            html = Regex.Replace(html, @"<br\s*/?>", "\n", RegexOptions.IgnoreCase);
+
+            // Strip all remaining tags
+            var text = Regex.Replace(html, "<.*?>", string.Empty);
+
+            // Decode HTML entities (&nbsp;, &amp;, etc.)
+            text = WebUtility.HtmlDecode(text);
+
+            // Normalize whitespace a bit
+            text = Regex.Replace(text, @"[ \t]{2,}", " ");
+            text = Regex.Replace(text, @"\n{3,}", "\n\n");
+
+            return text.Trim();
         }
     }
 }

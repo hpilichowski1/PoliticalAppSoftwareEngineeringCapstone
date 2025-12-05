@@ -5,19 +5,35 @@
              xmlns:viewModels="clr-namespace:PoliticalApp.ViewModels"
              xmlns:models="clr-namespace:PoliticalApp.Models"
              x:DataType="viewModels:BillsViewModel"
+             x:Name="BillsPageRoot"
              Title="Bills"
              BackgroundColor="{StaticResource BackgroundColor}">
 
-    <Grid>
-        <CollectionView ItemsSource="{Binding Bills}">
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Page header title -->
+        <Label Grid.Row="0"
+               Text="Recent Bills"
+               Margin="16,8,16,0"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="Black" />
+
+        <!-- Bills list -->
+        <CollectionView x:Name="BillsCollection"
+                        Grid.Row="1"
+                        ItemsSource="{Binding Bills}"
+                        SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Bill">
-                    <Frame Margin="16,8"
-                           Padding="16"
-                           CornerRadius="12"
-                           HasShadow="True"
-                           BackgroundColor="White">
+                    <Border Margin="16,8"
+                            Padding="16"
+                            BackgroundColor="White"
+                            Stroke="LightGray"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 12">
                         <VerticalStackLayout Spacing="6">
+
                             <!-- Bill title -->
                             <Label Text="{Binding Title}"
                                    FontSize="18"
@@ -36,6 +52,12 @@
                                 </Label.Text>
                             </Label>
 
+                            <!-- Title of Bill (you can drop this if it's too redundant) -->
+                            <Label Text="{Binding Title}"
+                                   FontSize="15"
+                                   TextColor="Black"
+                                   LineBreakMode="WordWrap" />
+
                             <!-- Latest action date + text -->
                             <Label FontSize="13"
                                    TextColor="Gray"
@@ -47,14 +69,32 @@
                                     </MultiBinding>
                                 </Label.Text>
                             </Label>
+
+                            <!-- Summary (only visible when expanded) -->
+                            <Label Text="{Binding SummaryText}"
+                                FontSize="14"
+                                TextColor="Black"
+                                LineBreakMode="WordWrap"
+                                Margin="0,6,0,0"/>
+                   
+
                         </VerticalStackLayout>
-                    </Frame>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!-- Simple loading spinner -->
-        <ActivityIndicator IsRunning="{Binding IsLoading}"
+        <!-- Load more button at bottom -->
+        <Button Grid.Row="2"
+                Margin="16,8,16,16"
+                Text="Load more"
+                Command="{Binding LoadMoreCommand}"
+                IsVisible="{Binding HasMore}"
+                IsEnabled="{Binding CanLoadMore}" />
+
+        <!-- Loading spinner over everything -->
+        <ActivityIndicator Grid.RowSpan="3"
+                           IsRunning="{Binding IsLoading}"
                            IsVisible="{Binding IsLoading}"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" />

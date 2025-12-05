@@ -49,18 +49,5 @@ namespace PoliticalAppAPI.Controllers
 
             return Ok(result);
         }
-
-        // GET api/bills/{id}/summary
-        [HttpGet("{id:int}/summary")]
-        public async Task<ActionResult<string?>> GetSummary(int id)
-        {
-            var summary = await _billSync.GetOrFetchSummaryAsync(id);
-            if (summary is null)
-            {
-                return NotFound();
-            }
-
-            return Ok(summary);
-        }
     }
 }

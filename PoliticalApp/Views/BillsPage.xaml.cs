@@ -1,3 +1,4 @@
+using PoliticalApp.Models;
 using PoliticalApp.ViewModels;
 
 namespace PoliticalApp.Views
