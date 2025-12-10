@@ -58,6 +58,7 @@ namespace PoliticalApp.ViewModels
             }
             else
             {
+                App.CurrentUsername = Email;
                 // navigate after login
                 await Shell.Current.GoToAsync("//HomePage");
             }

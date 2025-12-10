@@ -43,6 +43,8 @@ namespace PoliticalApp.ViewModels
 
         public ICommand LoadCommand { get; }
         public ICommand LoadMoreCommand { get; }
+        public ICommand UpvoteCommand { get; }
+        public ICommand DownvoteCommand { get; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -58,6 +60,8 @@ namespace PoliticalApp.ViewModels
                 async () => await LoadMoreAsync(),
                 () => CanLoadMore);
 
+            UpvoteCommand = new Command<Bill>(async (bill) => await VoteAsync(bill, VoteType.Up));
+            DownvoteCommand = new Command<Bill>(async (bill) => await VoteAsync(bill, VoteType.Down));
         }
 
         private async Task LoadFirstPageAsync()
@@ -120,6 +124,38 @@ namespace PoliticalApp.ViewModels
                 UpdateCommands();
             }
         }
+
+        private async Task VoteAsync(Bill bill, VoteType vote)
+        {
+            try
+            {
+                var api = (ApiBillService)_billService;
+
+                // If user taps the same button = unvote
+                var newVote = vote;
+                if (bill.UserVote == vote)
+                    newVote = VoteType.None;
+
+                var updated = await api.VoteAsync(bill.Id, newVote);
+
+                Debug.WriteLine($"Set App.CurrentUsername = {App.CurrentUsername}");
+
+                if (updated == null) return;
+
+                // Update the bill in the list
+                bill.UpVotes = updated.UpVotes;
+                bill.DownVotes = updated.DownVotes;
+                bill.UserVote = updated.UserVote;
+
+                // Force UI refresh
+                OnPropertyChanged(nameof(Bills));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Vote error: " + ex.Message);
+            }
+        }
+
 
         private void UpdateCommands()
         {

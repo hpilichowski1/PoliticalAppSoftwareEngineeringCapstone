@@ -13,6 +13,8 @@
             <converters:NullableToBoolConverter x:Key="NullableToBoolConverter" />
             <converters:ConsistencyScoreToColorConverter x:Key="ConsistencyScoreToColorConverter" />
             <converters:ScoreToProgressConverter x:Key="ScoreToProgressConverter" />
+            <converters:VoteToUpColorConverter x:Key="VoteToUpColorConverter"/>
+            <converters:VoteToDownColorConverter x:Key="VoteToDownColorConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

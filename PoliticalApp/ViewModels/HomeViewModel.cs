@@ -13,7 +13,6 @@ namespace PoliticalApp.ViewModels;
 
 public partial class HomeViewModel : ObservableObject
 {
-    private readonly IPolicyService _policyService;
     private readonly IRepresentativeService _representativeService;
 
     [ObservableProperty]
@@ -25,9 +24,8 @@ public partial class HomeViewModel : ObservableObject
     [ObservableProperty]
     private bool isLoading;
 
-    public HomeViewModel(IPolicyService policyService, IRepresentativeService representativeService)
+    public HomeViewModel(IRepresentativeService representativeService)
     {
-        _policyService = policyService ?? throw new ArgumentNullException(nameof(policyService));
         _representativeService = representativeService ?? throw new ArgumentNullException(nameof(representativeService));
 
         _ = LoadDataAsync();
@@ -45,27 +43,11 @@ public partial class HomeViewModel : ObservableObject
         {
             IsLoading = true;
 
-            var votedPolicies = await _policyService.GetUserVotedPoliciesAsync() ?? new List<Policy>();
-
-            var recent = votedPolicies
-                .OrderByDescending(p => p.VoteDeadline ?? p.IntroducedDate)
-                .Take(3)
-                .ToList();
-
-            RecentVotes = new ObservableCollection<Policy>(recent);
-
             var representatives = await _representativeService.GetRepresentativesAsync();
             var representativeTrend = representatives.Count >= 5 ? "up" : "neutral";
 
             Stats = new ObservableCollection<CivicStat>(new[]
             {
-                new CivicStat
-                {
-                    Label = "Bills Voted On",
-                    Value = votedPolicies.Count.ToString(),
-                    Icon = "🗳️",
-                    TrendDirection = votedPolicies.Count > 0 ? "up" : "neutral"
-                },
                 new CivicStat
                 {
                     Label = "Representatives Followed",

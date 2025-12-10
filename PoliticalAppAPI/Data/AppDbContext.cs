@@ -10,6 +10,15 @@ namespace PoliticalAppAPI.Data
         public DbSet<User> Users => Set<User>();
         public DbSet<Representative> Representatives => Set<Representative>();
         public DbSet<Bill> Bills => Set<Bill>();
+        public DbSet<BillVote> BillVotes => Set<BillVote>();
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<BillVote>()
+                .HasIndex(v => new { v.BillId, v.UserId })
+                .IsUnique();
+        }
     }
 }

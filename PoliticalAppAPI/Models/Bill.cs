@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -42,5 +43,14 @@ namespace PoliticalAppAPI.Models
 
         [Required, Column("last_updated_utc")]
         public DateTime LastUpdatedUtc { get; set; } = DateTime.UtcNow;
+
+        // NEW: votes for this bill
+        [InverseProperty(nameof(BillVote.Bill))]
+        public ICollection<BillVote> Votes { get; set; } = new List<BillVote>();
+
+        [Column("state")]
+        public string? State { get; set; }      // e.g. "FL"
+        [Column("region")]
+        public string? Region { get; set; } 
     }
 }

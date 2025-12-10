@@ -76,8 +76,24 @@
                                 TextColor="Black"
                                 LineBreakMode="WordWrap"
                                 Margin="0,6,0,0"/>
-                   
 
+                            <!-- Upvote Button -->
+                            <Button Text="Yay"
+                                    Command="{Binding Source={x:Reference BillsPageRoot}, Path=BindingContext.UpvoteCommand}"
+                                    CommandParameter="{Binding}"
+                                    BackgroundColor="{Binding UserVote, Converter={StaticResource VoteToUpColorConverter}}"
+                                    />
+
+                            <Label Text="{Binding UpVotes}" VerticalOptions="Center" />
+
+                            <!-- Downvote Button -->
+                            <Button Text="Nay"
+                                    Command="{Binding Source={x:Reference BillsPageRoot}, Path=BindingContext.DownvoteCommand}"
+                                    CommandParameter="{Binding}"
+                                    BackgroundColor="{Binding UserVote, Converter={StaticResource VoteToDownColorConverter}}"
+                                    />
+
+                            <Label Text="{Binding DownVotes}" VerticalOptions="Center" />
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>

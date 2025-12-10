@@ -12,6 +12,9 @@ namespace PoliticalAppAPI.DTOs.Bills
         public DateTime? LatestActionDate { get; set; }
         public string? LatestActionText { get; set; }
         public string? SummaryText { get; set; }
+
+        public int UpVotes { get; set; }
+        public int DownVotes { get; set; }
+        public VoteType? UserVote { get; set; } // null = not voted, 1 = up, -1 = down
     }
 }
-

@@ -4,6 +4,7 @@ namespace PoliticalApp;
 
 public partial class App : Application
 {
+    public static string CurrentUsername { get; set; } = "h@gmail.com";
     public App()
     {
         InitializeComponent();

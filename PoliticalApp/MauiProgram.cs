@@ -23,7 +23,6 @@ public static class MauiProgram
 
 		// Register Services
 		builder.Services.AddSingleton<RepresentativesViewModel>();
-		builder.Services.AddSingleton<IPolicyService, MockPolicyService>();
 
 		builder.Services.AddSingleton<IBillService, ApiBillService>();
 		builder.Services.AddTransient<BillsViewModel>();
