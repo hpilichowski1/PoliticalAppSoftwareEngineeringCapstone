@@ -44,6 +44,9 @@ public static class MauiProgram
 		builder.Services.AddTransient<HomePage>();
 		builder.Services.AddTransient<RepresentativesPage>();
 
+		builder.Services.AddSingleton<ProfileViewModel>();
+		builder.Services.AddSingleton<ProfilePage>();
+
 		builder.Logging.AddDebug();
 
 		builder.Services.AddHttpClient<ApiClient>(client =>
@@ -60,6 +63,11 @@ public static class MauiProgram
 		builder.Services.AddHttpClient<IBillService, ApiBillService>(client =>
 		{
 			client.BaseAddress = new Uri("http://localhost:5154/"); // adjust if different
+		});
+
+		builder.Services.AddHttpClient<IProfileService, ApiProfileService>(client =>
+		{
+			client.BaseAddress = new Uri("http://localhost:5154/");
 		});
 
 #if DEBUG

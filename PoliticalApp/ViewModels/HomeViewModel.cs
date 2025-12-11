@@ -77,7 +77,7 @@ public partial class HomeViewModel : ObservableObject
     [RelayCommand]
     private Task NavigateToPoliciesAsync()
     {
-        return Shell.Current?.GoToAsync("//policies") ?? Task.CompletedTask;
+        return Shell.Current?.GoToAsync("//bills") ?? Task.CompletedTask;
     }
 
     [RelayCommand]

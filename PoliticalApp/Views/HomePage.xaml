@@ -22,120 +22,65 @@
                 <!-- Statistics Section -->
                 <VerticalStackLayout Spacing="12">
                     <Label Text="Your Activity"
-                           Style="{StaticResource HeadlineLabelStyle}" />
+                        Style="{StaticResource HeadlineLabelStyle}" />
 
                     <CollectionView ItemsSource="{Binding Stats}"
                                     SelectionMode="None">
+                        
+                        <!-- Vertical list -->
                         <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal"
-                                               ItemSpacing="12" />
+                            <LinearItemsLayout Orientation="Vertical"
+                                            ItemSpacing="12" />
                         </CollectionView.ItemsLayout>
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:CivicStat">
                                 <Frame Style="{StaticResource CardFrameStyle}"
-                                       WidthRequest="180">
-                                    <VerticalStackLayout Spacing="8"
-                                                         HorizontalOptions="Center">
+                                    Padding="16"
+                                    Margin="4, 4, 4, 4">
+
+                                    <!-- Horizontal content inside each card -->
+                                    <Grid ColumnDefinitions="Auto, *"
+                                        ColumnSpacing="16"
+                                        VerticalOptions="Center">
+
+                                        <!-- ICON -->
                                         <Label Text="{Binding Icon}"
-                                               FontSize="36"
-                                               HorizontalTextAlignment="Center" />
-                                        <Label Text="{Binding Value}"
-                                               Style="{StaticResource HeadlineLabelStyle}"
-                                               HorizontalTextAlignment="Center"
-                                               Margin="0" />
-                                        <Label Text="{Binding Label}"
-                                               Style="{StaticResource CaptionLabelStyle}"
-                                               HorizontalTextAlignment="Center" />
-                                    </VerticalStackLayout>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </VerticalStackLayout>
+                                            FontSize="36"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start" />
 
-                <!-- Recent Votes Section -->
-                <VerticalStackLayout Spacing="12">
-                    <Label Text="Recent Votes"
-                           Style="{StaticResource HeadlineLabelStyle}" />
+                                        <!-- VALUE + LABEL -->
+                                        <VerticalStackLayout Grid.Column="1"
+                                                            Spacing="2"
+                                                            VerticalOptions="Center">
 
-                    <CollectionView ItemsSource="{Binding RecentVotes}"
-                                    SelectionMode="None">
-                        <CollectionView.EmptyView>
-                            <VerticalStackLayout Padding="12"
-                                                 Spacing="4">
-                                <Label Text="No recent votes yet."
-                                       Style="{StaticResource BodyLabelStyle}"
-                                       HorizontalTextAlignment="Center" />
-                                <Label Text="Engage with policies to see them here."
-                                       Style="{StaticResource CaptionLabelStyle}"
-                                       HorizontalTextAlignment="Center" />
-                            </VerticalStackLayout>
-                        </CollectionView.EmptyView>
+                                            <Label Text="{Binding Value}"
+                                                Style="{StaticResource HeadlineLabelStyle}"
+                                                HorizontalTextAlignment="Start"
+                                                Margin="0" />
 
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="models:Policy">
-                                <Frame Style="{StaticResource CardFrameStyle}">
-                                    <Grid ColumnDefinitions="*,Auto"
-                                          ColumnSpacing="12">
-                                        <VerticalStackLayout Grid.Column="0"
-                                                             Spacing="4">
-                                            <Label Text="{Binding BillNumber}"
-                                                   Style="{StaticResource CaptionLabelStyle}"
-                                                   TextColor="{StaticResource PrimaryColor}"
-                                                   FontAttributes="Bold" />
-                                            <Label Text="{Binding Title}"
-                                                   Style="{StaticResource SubheadLabelStyle}"
-                                                   Margin="0" />
-                                            <Label Text="{Binding UserVote}"
-                                                   Style="{StaticResource BodyLabelStyle}"
-                                                   FontAttributes="Bold">
-                                                <Label.Triggers>
-                                                    <DataTrigger TargetType="Label"
-                                                                 Binding="{Binding UserVote}"
-                                                                 Value="Yea">
-                                                        <Setter Property="TextColor"
-                                                                Value="{StaticResource SuccessColor}" />
-                                                    </DataTrigger>
-                                                    <DataTrigger TargetType="Label"
-                                                                 Binding="{Binding UserVote}"
-                                                                 Value="Nay">
-                                                        <Setter Property="TextColor"
-                                                                Value="{StaticResource ErrorColor}" />
-                                                    </DataTrigger>
-                                                    <DataTrigger TargetType="Label"
-                                                                 Binding="{Binding UserVote}"
-                                                                 Value="Abstain">
-                                                        <Setter Property="TextColor"
-                                                                Value="{StaticResource TextSecondaryColor}" />
-                                                    </DataTrigger>
-                                                </Label.Triggers>
-                                            </Label>
+                                            <Label Text="{Binding Label}"
+                                                Style="{StaticResource CaptionLabelStyle}"
+                                                HorizontalTextAlignment="Start" />
                                         </VerticalStackLayout>
 
-                                        <Label Grid.Column="1"
-                                               Text="{Binding VoteDeadline, StringFormat='Vote by {0:MMM dd, yyyy}'}"
-                                               Style="{StaticResource CaptionLabelStyle}"
-                                               HorizontalTextAlignment="End"
-                                               VerticalOptions="Start"
-                                               Margin="0"
-                                               IsVisible="{Binding VoteDeadline, Converter={StaticResource NullableToBoolConverter}}" />
                                     </Grid>
                                 </Frame>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-
-                    <Button Text="View All Policies"
-                            Command="{Binding NavigateToPoliciesCommand}"
-                            Style="{StaticResource PrimaryButtonStyle}" />
                 </VerticalStackLayout>
+
 
                 <!-- Quick Actions Section -->
                 <VerticalStackLayout Spacing="12">
                     <Label Text="Quick Actions"
                            Style="{StaticResource HeadlineLabelStyle}" />
 
+                    <Button Text="View Bills and Policies"
+                            Command="{Binding NavigateToPoliciesCommand}"
+                            Style="{StaticResource PrimaryButtonStyle}" />
                     <Grid ColumnDefinitions="*,*"
                           ColumnSpacing="12">
                         <Button Text="Find Representatives"

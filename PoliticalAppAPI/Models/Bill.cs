@@ -47,10 +47,5 @@ namespace PoliticalAppAPI.Models
         // NEW: votes for this bill
         [InverseProperty(nameof(BillVote.Bill))]
         public ICollection<BillVote> Votes { get; set; } = new List<BillVote>();
-
-        [Column("state")]
-        public string? State { get; set; }      // e.g. "FL"
-        [Column("region")]
-        public string? Region { get; set; } 
     }
 }

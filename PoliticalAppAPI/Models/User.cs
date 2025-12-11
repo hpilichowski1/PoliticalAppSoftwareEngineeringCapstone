@@ -21,5 +21,9 @@ namespace PoliticalAppAPI.Models
 
         [Column("password_hash")]
         public string PasswordHash { get; set; } = string.Empty;
+        [Column("state")]
+        public string? State { get; set; }      // e.g. "FL"
+        [Column("region")]
+        public string? Region { get; set; }
     }
 }

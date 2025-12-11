@@ -71,6 +71,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Views.LoginPa
 build_metadata.AdditionalFiles.TargetPath = Views/LoginPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/LoginPage.xaml
 
+[/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/Views/ProfilePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Views.ProfilePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ProfilePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ProfilePage.xaml
+
 [/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/Views/RegisterPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Views.RegisterPage.xaml

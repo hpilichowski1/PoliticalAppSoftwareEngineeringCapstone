@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PoliticalAppAPI.Data;
 
@@ -11,9 +12,11 @@ using PoliticalAppAPI.Data;
 namespace PoliticalAppAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251210232752_AddUserLocation")]
+    partial class AddUserLocation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,9 +64,17 @@ namespace PoliticalAppAPI.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("policy_area");
 
+                    b.Property<string>("Region")
+                        .HasColumnType("longtext")
+                        .HasColumnName("region");
+
                     b.Property<string>("SponsorName")
                         .HasColumnType("longtext")
                         .HasColumnName("sponsor_name");
+
+                    b.Property<string>("State")
+                        .HasColumnType("longtext")
+                        .HasColumnName("state");
 
                     b.Property<string>("SummaryText")
                         .HasColumnType("longtext")
@@ -197,18 +208,10 @@ namespace PoliticalAppAPI.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("password_hash");
 
-                    b.Property<string>("Region")
-                        .HasColumnType("longtext")
-                        .HasColumnName("region");
-
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("role");
-
-                    b.Property<string>("State")
-                        .HasColumnType("longtext")
-                        .HasColumnName("state");
 
                     b.HasKey("UserId");
 

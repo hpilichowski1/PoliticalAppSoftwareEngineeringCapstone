@@ -38,8 +38,8 @@
         <Tab Title="Profile" Icon="person.png" Route="profile">
             <ShellContent
                 Title="Profile"
-                ContentTemplate="{DataTemplate ContentPage}"
-                Route="ProfilePlaceholder" />
+                ContentTemplate="{DataTemplate views:ProfilePage}"
+                Route="ProfilePage" />
         </Tab>
     </TabBar>
 

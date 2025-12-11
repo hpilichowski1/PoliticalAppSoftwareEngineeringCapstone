@@ -62,15 +62,16 @@ namespace PoliticalAppAPI.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(new PagedResponse<BillDto>
+            return Ok(new PagedResult<BillDto>
             {
                 Items = items,
-                Total = total
+                Total = total,
+                Page = page,
+                PageSize = pageSize
             });
         }
 
         // ----- Voting -----
-
         public class VoteRequest
         {
             public VoteType Vote { get; set; }
