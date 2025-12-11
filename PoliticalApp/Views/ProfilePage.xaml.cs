@@ -15,6 +15,7 @@ public partial class ProfilePage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await _vm.LoadAsync();
+        if (BindingContext is ProfileViewModel vm)
+            await vm.LoadAsync();
     }
 }

@@ -29,7 +29,7 @@
             <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
         </Style>
 
-        <!-- Vote pill style -->
+        <!-- Vote pill border -->
         <Style x:Key="VotePillBorder" TargetType="Border">
             <Setter Property="StrokeShape">
                 <Setter.Value>
@@ -43,13 +43,13 @@
     </ContentPage.Resources>
 
 
-    <!-- Main scroll area -->
+    <!-- ======================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ======================= -->
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="16">
 
-            <!-- ======================= -->
-            <!-- PROFILE INFO CARD -->
-            <!-- ======================= -->
+            <!-- PROFILE CARD -->
             <Frame Style="{StaticResource CardFrameStyle}">
                 <VerticalStackLayout Spacing="8">
                     <Label Text="Profile" Style="{StaticResource SectionTitleLabel}" />
@@ -58,9 +58,8 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- ======================= -->
+
             <!-- LOCATION SETTINGS CARD -->
-            <!-- ======================= -->
             <Frame Style="{StaticResource CardFrameStyle}">
                 <VerticalStackLayout Spacing="12">
 
@@ -68,50 +67,50 @@
 
                     <VerticalStackLayout>
                         <Label Text="State" Style="{StaticResource SubLabel}" />
-                        <Entry Text="{Binding State}"
-                               Placeholder="e.g. FL" />
+                        <Entry Text="{Binding State}" Placeholder="e.g. FL" />
                     </VerticalStackLayout>
 
                     <VerticalStackLayout>
                         <Label Text="Region / District" Style="{StaticResource SubLabel}" />
-                        <Entry Text="{Binding Region}"
-                               Placeholder="e.g. 2" />
+                        <Entry Text="{Binding Region}" Placeholder="e.g. 2" />
                     </VerticalStackLayout>
 
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                         <Button Text="Save Location"
                                 Grid.Column="0"
                                 Command="{Binding SaveLocationCommand}" />
+
                         <Button Text="Get Representatives"
                                 Grid.Column="1"
-                                Command="{Binding GetRepresentativesCommand}" />
+                                Command="{Binding LoadRepresentativesCommand}" />
                     </Grid>
-
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- ======================= -->
-            <!-- REPRESENTATIVES (FIRST) -->
-            <!-- ======================= -->
+
+            <!-- REPRESENTATIVES CARD -->
             <Frame Style="{StaticResource CardFrameStyle}">
                 <VerticalStackLayout Spacing="8">
+
                     <Label Text="Your Representatives" Style="{StaticResource SectionTitleLabel}" />
 
                     <VerticalStackLayout BindableLayout.ItemsSource="{Binding Representatives}"
-                                        Spacing="10">
+                                         Spacing="10">
 
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <VerticalStackLayout Spacing="2">
                                     <Label Text="{Binding Name}"
-                                        FontAttributes="Bold"
-                                        FontSize="14" />
+                                           FontAttributes="Bold"
+                                           FontSize="14" />
+
                                     <Label Text="{Binding Office}"
-                                        FontSize="12"
-                                        TextColor="{DynamicResource SecondaryTextColor}" />
+                                           FontSize="12"
+                                           TextColor="{DynamicResource SecondaryTextColor}" />
+
                                     <Label Text="{Binding Party}"
-                                        FontSize="12"
-                                        TextColor="{DynamicResource SecondaryTextColor}" />
+                                           FontSize="12"
+                                           TextColor="{DynamicResource SecondaryTextColor}" />
                                 </VerticalStackLayout>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
@@ -121,58 +120,56 @@
             </Frame>
 
 
-            <!-- ======================= -->
-            <!-- USER VOTES CARD (SECOND) -->
-            <!-- ======================= -->
-            <!-- VOTES CARD -->
+            <!-- USER VOTES CARD -->
             <Frame Style="{StaticResource CardFrameStyle}">
                 <VerticalStackLayout Spacing="8">
                     <Label Text="Your Votes" Style="{StaticResource SectionTitleLabel}" />
 
-                    <!-- If no votes -->
+                    <!-- Empty view -->
                     <Label Text="You haven’t voted on any bills yet."
-                        FontSize="12"
-                        TextColor="{DynamicResource SecondaryTextColor}"
-                        IsVisible="{Binding UserVotes.Count, Converter={StaticResource ZeroToBoolConverter}}" />
+                           FontSize="12"
+                           TextColor="{DynamicResource SecondaryTextColor}"
+                           IsVisible="{Binding Votes.Count, Converter={StaticResource ZeroToBoolConverter}}" />
 
-                    <!-- LIST OF VOTES -->
-                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding UserVotes}"
-                                        Spacing="12">
+                    <!-- Votes List -->
+                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding Votes}"
+                                         Spacing="12">
 
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Grid ColumnDefinitions="*,Auto"
-                                    RowDefinitions="Auto,Auto"
-                                    Padding="0,4">
+                                      RowDefinitions="Auto,Auto"
+                                      Padding="0,4">
 
-                                    <!-- Bill Title -->
+                                    <!-- BILL TITLE -->
                                     <Label Text="{Binding BillTitle}"
-                                        Grid.Row="0"
-                                        Grid.ColumnSpan="2"
-                                        FontAttributes="Bold"
-                                        FontSize="14"
-                                        LineBreakMode="WordWrap" />
+                                           Grid.Row="0"
+                                           Grid.ColumnSpan="2"
+                                           FontAttributes="Bold"
+                                           FontSize="14"
+                                           LineBreakMode="WordWrap" />
 
                                     <!-- Vote text -->
                                     <Label Text="{Binding VoteText}"
-                                        Grid.Row="1"
-                                        FontSize="12"
-                                        TextColor="{DynamicResource SecondaryTextColor}" />
+                                           Grid.Row="1"
+                                           FontSize="12"
+                                           TextColor="{DynamicResource SecondaryTextColor}" />
+
 
                                     <!-- Vote pill -->
                                     <Border Grid.Row="1"
                                             Grid.Column="1"
                                             Style="{StaticResource VotePillBorder}">
+
                                         <Border.BackgroundColor>
-                                            <MultiBinding Converter="{StaticResource VoteToColorConverter}">
-                                                <Binding Path="VoteText" />
-                                            </MultiBinding>
+                                            <Binding Path="VoteText" Converter="{StaticResource VoteToColorConverter}" />
                                         </Border.BackgroundColor>
 
+
                                         <Label Text="{Binding VoteText}"
-                                            FontAttributes="Bold"
-                                            FontSize="12"
-                                            TextColor="White" />
+                                               FontAttributes="Bold"
+                                               FontSize="12"
+                                               TextColor="White" />
                                     </Border>
 
                                 </Grid>
