@@ -39,6 +39,8 @@ public partial class ProfileViewModel : ObservableObject
 
     [ObservableProperty]
     bool isBusy;
+    [ObservableProperty]
+    int? alignmentScore;
 
     [RelayCommand]
     public async Task LoadAsync()
@@ -54,6 +56,7 @@ public partial class ProfileViewModel : ObservableObject
             Name = profile.Name;
             State = profile.State;
             Region = profile.Region;
+            AlignmentScore = profile.AlignmentScore;
 
             Votes.Clear();
             foreach (var v in profile.Votes)

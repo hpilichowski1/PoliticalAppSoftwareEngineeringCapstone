@@ -55,9 +55,11 @@
                     <Label Text="Profile" Style="{StaticResource SectionTitleLabel}" />
                     <Label Text="Email" Style="{StaticResource SubLabel}" />
                     <Label Text="{Binding Email}" FontSize="14" />
+                    <Label Text="Alignment Score" Style="{StaticResource SubLabel}" />
+                   <Label Text="{Binding AlignmentScore, StringFormat='{}{0}%'}" FontSize="18" FontAttributes="Bold"/>
+
                 </VerticalStackLayout>
             </Frame>
-
 
             <!-- LOCATION SETTINGS CARD -->
             <Frame Style="{StaticResource CardFrameStyle}">
@@ -125,12 +127,6 @@
                 <VerticalStackLayout Spacing="8">
                     <Label Text="Your Votes" Style="{StaticResource SectionTitleLabel}" />
 
-                    <!-- Empty view -->
-                    <Label Text="You haven’t voted on any bills yet."
-                           FontSize="12"
-                           TextColor="{DynamicResource SecondaryTextColor}"
-                           IsVisible="{Binding Votes.Count, Converter={StaticResource ZeroToBoolConverter}}" />
-
                     <!-- Votes List -->
                     <VerticalStackLayout BindableLayout.ItemsSource="{Binding Votes}"
                                          Spacing="12">
@@ -149,24 +145,17 @@
                                            FontSize="14"
                                            LineBreakMode="WordWrap" />
 
-                                    <!-- Vote text -->
-                                    <Label Text="{Binding VoteText}"
-                                           Grid.Row="1"
-                                           FontSize="12"
-                                           TextColor="{DynamicResource SecondaryTextColor}" />
-
-
                                     <!-- Vote pill -->
                                     <Border Grid.Row="1"
                                             Grid.Column="1"
                                             Style="{StaticResource VotePillBorder}">
 
                                         <Border.BackgroundColor>
-                                            <Binding Path="VoteText" Converter="{StaticResource VoteToColorConverter}" />
+                                            <Binding Path="Vote" Converter="{StaticResource VoteToColorConverter}" />
                                         </Border.BackgroundColor>
 
 
-                                        <Label Text="{Binding VoteText}"
+                                        <Label Text="{Binding Vote}"
                                                FontAttributes="Bold"
                                                FontSize="12"
                                                TextColor="White" />

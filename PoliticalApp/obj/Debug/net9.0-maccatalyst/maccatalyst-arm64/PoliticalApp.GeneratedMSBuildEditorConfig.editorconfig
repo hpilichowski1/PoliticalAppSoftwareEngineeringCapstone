@@ -77,6 +77,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Views.Profile
 build_metadata.AdditionalFiles.TargetPath = Views/ProfilePage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/ProfilePage.xaml
 
+[/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/Views/QuizPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Views.QuizPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/QuizPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/QuizPage.xaml
+
 [/Users/hubertpilichowski/Documents/Coding/SoftwareEngineeringCapstone/PoliticalAppSoftwareEngineeringCapstone/PoliticalApp/Views/RegisterPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PoliticalApp.Views.RegisterPage.xaml

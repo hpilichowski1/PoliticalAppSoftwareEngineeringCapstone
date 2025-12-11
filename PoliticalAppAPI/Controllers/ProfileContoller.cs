@@ -54,7 +54,8 @@ public class ProfileController : ControllerBase
             Name = user.Name,
             State = user.State,
             Region = user.Region,
-            Votes = votes
+            Votes = votes,
+            AlignmentScore = user.AlignmentScore
         };
 
         return Ok(dto);

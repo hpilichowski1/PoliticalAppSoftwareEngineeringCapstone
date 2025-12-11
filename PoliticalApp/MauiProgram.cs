@@ -47,6 +47,11 @@ public static class MauiProgram
 		builder.Services.AddSingleton<ProfileViewModel>();
 		builder.Services.AddSingleton<ProfilePage>();
 
+		builder.Services.AddTransient<QuizViewModel>();
+		builder.Services.AddTransient<QuizPage>();
+
+		builder.Services.AddSingleton<IAlignmentService, ApiAlignmentService>();
+
 		builder.Logging.AddDebug();
 
 		builder.Services.AddHttpClient<ApiClient>(client =>
@@ -66,6 +71,11 @@ public static class MauiProgram
 		});
 
 		builder.Services.AddHttpClient<IProfileService, ApiProfileService>(client =>
+		{
+			client.BaseAddress = new Uri("http://localhost:5154/");
+		});
+
+		builder.Services.AddHttpClient<IAlignmentService, ApiAlignmentService>(client =>
 		{
 			client.BaseAddress = new Uri("http://localhost:5154/");
 		});

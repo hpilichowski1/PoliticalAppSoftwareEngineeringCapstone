@@ -16,6 +16,7 @@ namespace PoliticalAppAPI.DTOs.Profile
         public string? Region { get; set; }
 
         public List<UserVoteDto> Votes { get; set; } = new();
+        public int? AlignmentScore { get; set; }
     }
 
     public class UpdateLocationRequest

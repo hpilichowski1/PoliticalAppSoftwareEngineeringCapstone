@@ -41,6 +41,12 @@
                 ContentTemplate="{DataTemplate views:ProfilePage}"
                 Route="ProfilePage" />
         </Tab>
+        <Tab Title="Quiz" Icon="quiz.png" Route="quiz">
+            <ShellContent
+                Title="Quiz"
+                ContentTemplate="{DataTemplate views:QuizPage}"
+                Route="QuizPage" />
+        </Tab>
     </TabBar>
 
 </Shell>

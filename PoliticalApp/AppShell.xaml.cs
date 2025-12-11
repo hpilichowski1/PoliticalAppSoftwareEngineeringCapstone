@@ -10,5 +10,6 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("RepresentativesPlaceholder", typeof(ContentPage));
         Routing.RegisterRoute("PoliciesPlaceholder", typeof(ContentPage));
         Routing.RegisterRoute("ProfilePlaceholder", typeof(ContentPage));
+        Routing.RegisterRoute("QuizPlaceholder", typeof(ContentPage));
     }
 }

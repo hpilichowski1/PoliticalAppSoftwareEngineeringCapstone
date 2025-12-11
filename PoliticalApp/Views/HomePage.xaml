@@ -88,9 +88,9 @@
                                 Style="{StaticResource SecondaryButtonStyle}"
                                 Grid.Column="0" />
                         <Button Text="Take Alignment Quiz"
+                                Command="{Binding NavigateToQuizCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
-                                Grid.Column="1"
-                                IsEnabled="False" />
+                                Grid.Column="1" />
                     </Grid>
                 </VerticalStackLayout>
             </VerticalStackLayout>

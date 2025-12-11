@@ -85,4 +85,10 @@ public partial class HomeViewModel : ObservableObject
     {
         return Shell.Current?.GoToAsync("//representatives") ?? Task.CompletedTask;
     }
+
+    [RelayCommand]
+    private Task NavigateToQuizAsync()
+    {
+        return Shell.Current?.GoToAsync("//quiz") ?? Task.CompletedTask;
+    }
 }

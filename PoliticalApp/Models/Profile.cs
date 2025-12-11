@@ -15,4 +15,5 @@ public class ProfileInfo
     public string? Region { get; set; }
 
     public List<UserVote> Votes { get; set; } = new();
+    public int? AlignmentScore { get; set; }
 }

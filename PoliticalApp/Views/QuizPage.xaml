@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PoliticalApp.Views.QuizPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:PoliticalApp.ViewModels"
+    x:DataType="viewModels:QuizViewModel"
+    Title="Belief Alignment Quiz">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <!-- Header -->
+            <Label Text="Belief Alignment Quiz"
+                   FontSize="24"
+                   FontAttributes="Bold" />
+
+            <!-- Questions -->
+            <CollectionView ItemsSource="{Binding Questions}">
+                <CollectionView.ItemTemplate>
+
+                    <!-- IMPORTANT: each item is a QuizQuestion -->
+                    <DataTemplate x:DataType="viewModels:QuizQuestion">
+                        <VerticalStackLayout Spacing="6" Padding="0,8">
+
+                            <!-- This should now show your question text -->
+                            <Label Text="{Binding Text}"
+                                   FontSize="16"
+                                   FontAttributes="Bold" />
+
+                            <!-- 1–5 answer options for THIS question -->
+                            <HorizontalStackLayout Spacing="10">
+                                <RadioButton Content="1"
+                                             Value="1"
+                                             GroupName="{Binding Text}"
+                                             CheckedChanged="OnAnswerSelected" />
+
+                                <RadioButton Content="2"
+                                             Value="2"
+                                             GroupName="{Binding Text}"
+                                             CheckedChanged="OnAnswerSelected" />
+
+                                <RadioButton Content="3"
+                                             Value="3"
+                                             GroupName="{Binding Text}"
+                                             CheckedChanged="OnAnswerSelected" />
+
+                                <RadioButton Content="4"
+                                             Value="4"
+                                             GroupName="{Binding Text}"
+                                             CheckedChanged="OnAnswerSelected" />
+
+                                <RadioButton Content="5"
+                                             Value="5"
+                                             GroupName="{Binding Text}"
+                                             CheckedChanged="OnAnswerSelected" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Submit button -->
+            <Button Text="Submit"
+                    Command="{Binding SubmitQuizCommand}"
+                    Margin="0,16,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

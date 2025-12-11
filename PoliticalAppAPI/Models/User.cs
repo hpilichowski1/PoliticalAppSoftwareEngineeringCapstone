@@ -25,5 +25,8 @@ namespace PoliticalAppAPI.Models
         public string? State { get; set; }      // e.g. "FL"
         [Column("region")]
         public string? Region { get; set; }
+        [Column("alignment_score")]
+        public int? AlignmentScore { get; set; }
+
     }
 }
