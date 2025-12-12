@@ -85,7 +85,7 @@ public class RegisterViewModel : INotifyPropertyChanged
             }
 
             // After successful registration, go back to login
-            await Shell.Current.GoToAsync("LoginPage");
+            await Shell.Current.GoToAsync("///LoginPage");
         }
         catch (Exception ex)
         {

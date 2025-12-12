@@ -49,6 +49,8 @@ public partial class LoginPage : ContentPage
                 return;
             }
 
+            App.CurrentUsername = email;
+
             var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
 
             if (result is null || !result.Success)

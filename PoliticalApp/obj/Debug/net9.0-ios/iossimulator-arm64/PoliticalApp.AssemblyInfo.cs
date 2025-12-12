@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PoliticalApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+bdd6f6764604479cdae0cc92e96a405579b3df00")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+8d1bd9cdb4eeb422c91e652db3230284d020eb7c")]
 [assembly: System.Reflection.AssemblyProductAttribute("PoliticalApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PoliticalApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
